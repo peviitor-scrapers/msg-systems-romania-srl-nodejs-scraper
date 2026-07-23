@@ -36,7 +36,7 @@ function parseMsgJobs(html) {
   const $ = cheerio.load(html);
   const jobs = [];
 
-  $(".framedSection.smallPadding.bgWhite .col-sm-4").each((i, el) => {
+  $(".col-sm-4").each((i, el) => {
     const $card = $(el);
 
     const title = $card.find("h4").first().text().trim();
