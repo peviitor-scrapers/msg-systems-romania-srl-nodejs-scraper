@@ -5,5 +5,5 @@
   "website": "https://www.msg-systems.ro",
   "careerUrl": "https://msg-systems.ro/en/careers",
   "defaultLocation": "București",
-  "scraperFile": "https://raw.githubusercontent.com/sebiboga/msg-systems-romania-srl-nodejs-scraper/main/.github/workflows/job-seeker-ro-spider.yml"
+  "scraperFile": "https://github.com/sebiboga/msg-systems-romania-srl-nodejs-scraper/actions/workflows/job-seeker-ro-spider.yml"
 }
