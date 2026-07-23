@@ -1,19 +1,19 @@
 {
-  "validatedAt": "2026-04-13T11:09:40.321Z",
+  "validatedAt": "2026-07-23T10:00:00.000Z",
   "source": "ANAF",
-  "brand": "EPAM",
+  "brand": "MSG Systems",
   "anaf": {
-    "cui": 33159615,
-    "name": "EPAM SYSTEMS INTERNATIONAL SRL",
-    "address": "MUNICIPIUL BUCUREŞTI, SECTOR 1, BLD IANCU DE HUNEDOARA, NR.48, ET.9",
-    "registrationNumber": "J2014005735405",
+    "cui": 24415960,
+    "name": "MSG SYSTEMS ROMÂNIA SRL",
+    "address": "STR. BARBU VACARESCU, NR.164, SECTOR 2, BUCURESTI",
+    "registrationNumber": "J40/8732/2008",
     "phone": "",
     "fax": "",
-    "postalCode": "11745",
-    "caenCode": "6220",
+    "postalCode": "020272",
+    "caenCode": "6201",
     "iban": "",
-    "registrationState": "TRANSFER(SOSIRE) din data 20.04.2022",
-    "registrationDate": "2014-05-14",
+    "registrationState": "",
+    "registrationDate": "2008-06-13",
     "fiscalAuthority": "Direcţia Generală a Finanţelor Publice Municipiul Bucureşti",
     "ownershipForm": "PROPR.PRIVATA-CAPITAL PRIVAT STRAIN",
     "organizationForm": "PERSOANA JURIDICA",
@@ -21,7 +21,7 @@
     "vatRegistered": true,
     "vatPeriods": [
       {
-        "start": "2020-07-24",
+        "start": "2008-07-01",
         "end": null,
         "yearStart": "",
         "message": ""
@@ -31,17 +31,17 @@
     "cashBasisVatStart": null,
     "cashBasisVatEnd": null,
     "inactive": false,
-    "inactiveSince": "2018-12-27",
-    "reactivatedSince": "2020-05-13",
+    "inactiveSince": null,
+    "reactivatedSince": null,
     "splitVat": false,
     "eFacturaRegistered": false,
     "headquartersAddress": {
-      "street": "Bld. Iancu de Hunedoara",
-      "number": "48",
-      "locality": "Sector 1 Mun. Bucureşti",
+      "street": "Str. Barbu Vacarescu",
+      "number": "164",
+      "locality": "Sector 2 Mun. Bucureşti",
       "county": "MUNICIPIUL BUCUREŞTI",
       "country": "",
-      "postalCode": "11745"
+      "postalCode": "020272"
     },
     "fiscalAddress": {
       "street": "",
@@ -53,46 +53,50 @@
     },
     "administrators": [
       {
-        "name": "JASON PETERSON",
+        "name": "MSG SYSTEMS AG",
         "role": "administrator"
       }
     ],
     "authorizedCaenCodes": [
-      "6210",
-      "6220",
-      "6290",
-      "7020",
-      "8559"
+      "6201",
+      "6202",
+      "6209",
+      "6311",
+      "7021",
+      "7022",
+      "7311",
+      "7312",
+      "8299"
     ],
     "onrcStatus": 1048,
     "onrcStatusLabel": "Funcțiune"
   },
   "peviitor": {
-    "id": "33159615",
-    "company": "EPAM SYSTEMS INTERNATIONAL SRL",
-    "brand": "EPAM",
-    "group": "EPAM Systems",
+    "id": "24415960",
+    "company": "MSG SYSTEMS ROMÂNIA SRL",
+    "brand": "MSG Systems",
+    "group": "MSG Group",
     "status": "activ",
     "website": [
-      "https://www.epam.com"
+      "https://www.msg-systems.ro"
     ],
     "career": [
-      "https://www.epam.com/careers/locations/romania"
+      "https://msg-systems.ro/en/careers"
     ],
-    "lastScraped": "2026-04-12",
-    "scraperFile": "epam.md",
+    "lastScraped": "2026-07-23",
+    "scraperFile": "msg.md",
     "_version_": 1862291263324160000,
-    "_root_": "33159615"
+    "_root_": "24415960"
   },
   "summary": {
-    "company": "EPAM SYSTEMS INTERNATIONAL SRL",
-    "cif": "33159615",
+    "company": "MSG SYSTEMS ROMÂNIA SRL",
+    "cif": "24415960",
     "active": true,
-    "inactiveSince": "2018-12-27",
-    "reactivatedSince": "2020-05-13",
-    "address": "MUNICIPIUL BUCUREŞTI, SECTOR 1, BLD IANCU DE HUNEDOARA, NR.48, ET.9",
-    "registrationNumber": "J2014005735405",
-    "caenCode": "6220",
+    "inactiveSince": null,
+    "reactivatedSince": null,
+    "address": "STR. BARBU VACARESCU, NR.164, SECTOR 2, BUCURESTI",
+    "registrationNumber": "J40/8732/2008",
+    "caenCode": "6201",
     "vatRegistered": true,
     "eFacturaRegistered": false
   }

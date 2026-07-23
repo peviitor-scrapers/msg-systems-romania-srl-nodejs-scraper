@@ -1,11 +1,9 @@
 {
-  "cif": "33159615",
-  "legalName": "EPAM SYSTEMS INTERNATIONAL SRL",
-  "brand": "EPAM",
-  "website": "https://www.epam.com",
-  "careerUrl": "https://careers.epam.com",
-  "apiBase": "https://careers.epam.com",
-  "apiCountryId": "8150000000000001155",
+  "cif": "24415960",
+  "legalName": "MSG SYSTEMS ROMÂNIA SRL",
+  "brand": "MSG Systems",
+  "website": "https://www.msg-systems.ro",
+  "careerUrl": "https://msg-systems.ro/en/careers",
   "defaultLocation": "București",
-  "scraperFile": "https://raw.githubusercontent.com/sebiboga/epam-systems-international-srl-nodejs-scraper/main/.github/workflows/job-seeker-ro-spider.yml"
+  "scraperFile": "https://raw.githubusercontent.com/sebiboga/msg-systems-romania-srl-nodejs-scraper/main/.github/workflows/job-seeker-ro-spider.yml"
 }

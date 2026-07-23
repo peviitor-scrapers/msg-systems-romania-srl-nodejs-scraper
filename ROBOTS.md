@@ -1,58 +1,34 @@
-# Robots.txt Analysis — EPAM Careers
+# Robots.txt Analysis — MSG Systems
 
-Sursa: https://careers.epam.com/robots.txt
+## Site Structure
 
-## Reguli
+MSG Systems Romania careers page: https://www.msg-systems.ro/en/careers/job-offerings
 
-```
-User-agent: LinkedInBot
-Allow: /
+The careers page is a standard HTML page listing all current job openings. The scraper fetches this single page and parses it with cheerio to extract job cards.
 
-User-agent: *
-Disallow: /en/application
-Disallow: /ru/application
-Disallow: /api
-Disallow: /api/*
-Disallow: /*?skill*
-Disallow: /*?search*
-Disallow: /*?query*
-Disallow: /*?specialization*
-Disallow: /*?utm*
-Disallow: /none
-Disallow: /*?ref*
-Disallow: /*?job_title*
-Disallow: /*[blogId]*
-Disallow: /*[jobId]*
-Disallow: /*[cms]*
-Disallow: /*[uid]*
-Disallow: /*?page*
-Disallow: /*?gclid*
-Disallow: /blog
-Disallow: /blog/*
-Disallow: /*/vacancy/*
-Disallow: /ai-interviewer
-Disallow: /ai-interviewer/*
-```
+## Scraping Approach
 
-## Interpretare
+The scraper uses **HTML parsing** (not API calls) to extract job listings:
+- Single page fetch: `https://www.msg-systems.ro/en/careers/job-offerings`
+- Parses `.framedSection.smallPadding.bgWhite .col-sm-4` job cards
+- Extracts title (`h4`), location (paragraph with 📌 emoji), and link (`a[href]`)
+- One request total — no pagination needed
 
-| Cale | Accesibil? | Ce conține |
-|---|---|---|
-| `/` (landing) | ✅ Da | Paginile principale per-locale |
-| `/en/jobs`, `/fr/jobs`, etc. | ✅ Da | Listări de job-uri (front-end) |
-| `/api/*` | ❌ **Disallowed** | API-ul JSON de la care scraper-ul nostru extrage datele |
-| `/*/vacancy/*` | ❌ **Disallowed** | Paginile individuale de job |
-| `/en/application` | ❌ Disallowed | Pagina de aplicare |
-| `/blog/*` | ❌ Disallowed | Blogul |
-| `/ai-interviewer/*` | ❌ Disallowed | Intervievator AI |
+## Rate Limiting & Politeness
+
+| Setting | Value |
+|---------|-------|
+| Requests per scrape | 1 (single page) |
+| User-Agent | `job_seeker_ro_spider` |
+| Concurrency | 1 (sequential) |
+| Request timeout | 10000 ms |
 
 ## Recomandare
 
 robots.txt NU este legal binding, dar reprezintă intenția proprietarului site-ului.
 
-- API-ul `/api/jobs/v2/search/...` e **disallowed** de robots.txt. În practică, serverul nu blochează cererile (răspunde cu 200 OK cu `User-Agent` normal).
-- Paginile individuale de job (`/en/vacancy/...`) sunt și ele disallowed. Noi nu le scraper-uim direct — doar le verificăm accesibilitatea (HEAD request) în E2E tests.
-- Dacă se dorește conformare strictă, singura alternativă ar fi scraper-uirea paginii `/en/jobs` din front-end (care e allowed).
-- Scraperul curent face o singură cerere per pagină (10 job-uri) cu delay de 1s între pagini — comportament rezonabil, nu agresiv.
+- Paginile de careers sunt accesibile public, fără restricții în robots.txt
+- Scraperul face o singură cerere HTML per rulare — comportament rezonabil, nu agresiv
+- Nu se folosește API — doar parsing HTML al paginii publice de job-uri
 
-**Concluzie**: Risc minim. API-ul e public, răspunde fără autentificare, iar scraperul e politicos (rate limiting, User-Agent standard, o singură cerere simultană).
+**Concluzie**: Risc minim. Pagina e publică, răspunde fără autentificare, iar scraperul e politicos (o singură cerere, User-Agent identificabil).
