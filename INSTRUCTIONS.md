@@ -133,7 +133,7 @@ generateJobsMarkdown() → docs/jobs.md
 | `company.js` | Validates company via ANAF + Peviitor; caches in root `company.json` (7-day TTL) and `tmp/company.json` |
 | `solr.js` | SOLR operations module - query, delete, upsert jobs + standalone commands |
 | `validate-jobs.js` | Manual deep validator (content-aware); thin CLI wrapper over `src/job-validator.js` |
-| `src/anaf.js` | ANAF API core module - searchCompany(brand) and getCompanyFromANAF(cif) with 3-retry/2s-backoff |
+| `src/anaf.js` | Company data module - ANAF (demoanaf.ro) + CUIScan (cuiscan.ro) fallback + CUIFirma search fallback. No retries — fast fail + fallback. |
 | `src/markdown-generator.js` | Generates `docs/jobs.md` with company info and all scraped jobs |
 | `src/job-validator.js` | Shared validation primitives: `validateByHead`, `validateByContent`, `DEFAULT_EXPIRED_KEYWORDS` |
 | `demoanaf.js` | CLI entry point for ANAF module (thin wrapper around src/anaf.js) |
@@ -163,7 +163,7 @@ The scraper is intentionally slow to be a good citizen:
 | Setting | Value | Where |
 |---------|-------|-------|
 | Request timeout | 10000 ms | `index.js` — `TIMEOUT` constant |
-| ANAF retries | 3 attempts, 2s exponential backoff | `src/anaf.js` |
+| ANAF fallback | 1 try demoanaf.ro → 1 try cuiscan.ro → cache | `src/anaf.js` |
 | Concurrency | 1 (sequential) | No `Promise.all` for paginated fetches |
 | User-Agent | `job_seeker_ro_spider` | Identifies the scraper in server logs |
 

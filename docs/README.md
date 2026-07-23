@@ -39,9 +39,9 @@ job_seeker_ro_spider
 ├── company.json                # Cache ANAF (committed, TTL 7 zile, fallback la stale)
 ├── ROBOTS.md          # Analiză robots.txt și politici de scraping
 ├── tests/
-│   ├── unit/          # 56 teste unitare (API-uri mock-uite)
+│   ├── unit/          # 77 teste unitare (API-uri mock-uite)
 │   ├── integration/   # 16 teste de integrare (ANAF + SOLR live)
-│   └── e2e/           # 13 teste end-to-end (pipelin complet)
+│   └── e2e/           # 11 teste end-to-end (pipelin complet)
 └── .github/workflows/
     ├── job-seeker-ro-spider.yml     # Rulează zilnic la 6 AM UTC
     └── automation-testing.yml       # Teste automate la fiecare push/PR

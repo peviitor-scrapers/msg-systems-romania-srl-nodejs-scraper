@@ -67,7 +67,7 @@ npm run test:consistency
 
 ### 7. Module Structure
 - `config/company.json` + `config/company.js` — single source of truth for company identity
-- `src/anaf.js` — core ANAF library (imported by company.js); retry logic: 3 retries, 2s exponential backoff
+- `src/anaf.js` — company data module (imported by company.js); ANAF + CUIScan fallback + CUIFirma search fallback. No retries.
 - `src/markdown-generator.js` — generates `docs/jobs.md` after each scrape; called from index.js
 - `src/job-validator.js` — shared `validateByHead` + `validateByContent` used by both validator CLIs
 - `demoanaf.js` — CLI wrapper around src/anaf.js
