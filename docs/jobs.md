@@ -14,7 +14,7 @@
 
 ## Current Job Listings (12)
 
-_Generated: 2026-07-23T08:56:10.251Z_
+_Generated: 2026-07-23T09:24:48.079Z_
 
 ### Senior Java Developer
 
