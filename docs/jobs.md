@@ -12,9 +12,9 @@
 | Careers | [https://msg-systems.ro/en/careers](https://msg-systems.ro/en/careers) |
 | Last Scraped | 2026-07-23 |
 
-## Current Job Listings (12)
+## Current Job Listings (29)
 
-_Generated: 2026-07-23T09:24:48.079Z_
+_Generated: 2026-07-23T09:44:21.126Z_
 
 ### Senior Java Developer
 
@@ -107,4 +107,139 @@ _Generated: 2026-07-23T09:24:48.079Z_
 - **Work Mode:** on-site
 - **Location:** România
 - **Tags:** software development
+- **Status:** scraped
+
+### .NET Developer
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-dotnet-developer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-dotnet-developer/)
+- **Work Mode:** on-site
+- **Location:** Timișoara, Târgu Mureș
+- **Tags:** software development
+- **Status:** scraped
+
+### SAP Administrator - PP, QM & PM
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-administrator-module-pp-qm-pm/](https://www.msg-systems.ro/en/careers/job-offerings/sap-administrator-module-pp-qm-pm/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### Atlassian And Collaboration Tools Administrator
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/atlassian-and-collaboration-tools-administrator/](https://www.msg-systems.ro/en/careers/job-offerings/atlassian-and-collaboration-tools-administrator/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** sys admin & tech support
+- **Status:** scraped
+
+### Senior Network Administrator
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-network-administrator/](https://www.msg-systems.ro/en/careers/job-offerings/senior-network-administrator/)
+- **Work Mode:** on-site
+- **Location:** Timișoara
+- **Status:** scraped
+
+### Senior IT Consultant
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/](https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Cluj-Napoca
+- **Tags:** software development
+- **Status:** scraped
+
+### Senior UC4 Operations Consultant
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/Senior-UC4-Operation-Consultant/](https://www.msg-systems.ro/en/careers/job-offerings/Senior-UC4-Operation-Consultant/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### Senior UC4 Migration Consultant
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-uc4-migration-consultant/](https://www.msg-systems.ro/en/careers/job-offerings/senior-uc4-migration-consultant/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### Cloud Security Specialist
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/cloud-security-specialist/](https://www.msg-systems.ro/en/careers/job-offerings/cloud-security-specialist/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### Cybersecurity Consultant (ISMS)
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/cybersecurity-isms-consultant/](https://www.msg-systems.ro/en/careers/job-offerings/cybersecurity-isms-consultant/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### Backup Administrator
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/backup-admin/](https://www.msg-systems.ro/en/careers/job-offerings/backup-admin/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** sys admin & tech support
+- **Status:** scraped
+
+### Senior Security Engineer
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/](https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### Lead Project Manager
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/](https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### SAP HCM Developer
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-hcm-developer/](https://www.msg-systems.ro/en/careers/job-offerings/sap-hcm-developer/)
+- **Work Mode:** on-site
+- **Location:** Timișoara, Târgu Mureș
+- **Tags:** software development
+- **Status:** scraped
+
+### Product Owner SAP Security & Authorization
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/](https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### Senior SAP S4HANA Test Manager
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/](https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### SAP Solution Expert
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/](https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### Technical S4 Architect
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/](https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
 - **Status:** scraped
