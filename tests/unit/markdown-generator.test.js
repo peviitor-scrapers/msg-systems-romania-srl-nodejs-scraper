@@ -3,7 +3,6 @@ import { generateJobsMarkdown } from "../../src/markdown-generator.js";
 const baseCompany = {
   id: "24415960",
   company: "MSG SYSTEMS ROMÂNIA SRL",
-  brand: "MSG Systems",
   status: "activ",
   location: ["București"],
   website: ["https://www.msg-systems.ro"],
@@ -30,11 +29,6 @@ describe("generateJobsMarkdown", () => {
     it("includes CIF", () => {
       const md = generateJobsMarkdown(baseCompany, []);
       expect(md).toContain("24415960");
-    });
-
-    it("includes brand", () => {
-      const md = generateJobsMarkdown(baseCompany, []);
-      expect(md).toContain("MSG Systems");
     });
 
     it("includes status", () => {

@@ -17,7 +17,7 @@ import companyConfig from "./config/company.js";
 const args = process.argv.slice(2);
 
 if (args[0] === "search") {
-  const brand = args[1] || companyConfig.brand;
+  const brand = args[1] || companyConfig.company;
   console.log(`=== Searching for: ${brand} ===\n`);
 
   searchCompany(brand)
@@ -32,7 +32,7 @@ if (args[0] === "search") {
       process.exit(1);
     });
 } else {
-  const cif = args[0] || companyConfig.cif;
+  const cif = args[0] || companyConfig.id;
   console.log(`=== Testing ANAF API for CIF: ${cif} ===\n`);
 
   getCompanyFromANAF(cif)

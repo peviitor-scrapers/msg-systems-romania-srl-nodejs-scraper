@@ -19,8 +19,7 @@ import companyConfig from "./config/company.js";
 // Peviitor API base URL for company validation
 const Peviitor_API_URL = "https://api.peviitor.ro/v1/company/";
 
-const COMPANY_CIF = companyConfig.cif;
-const COMPANY_BRAND = companyConfig.brand;
+const COMPANY_ID = companyConfig.id;
 
 // Cache TTL — re-fetch from ANAF if cached data is older than this
 const CACHE_MAX_AGE_DAYS = 7;
@@ -153,7 +152,6 @@ function saveCompanyData(anafData, peviitorData) {
     // Metadata
     validatedAt: new Date().toISOString(),
     source: "ANAF",
-    brand: COMPANY_BRAND,
     
     // Raw data from sources
     anaf: anafData,
@@ -161,16 +159,16 @@ function saveCompanyData(anafData, peviitorData) {
     
     // Summary with extracted key fields
     summary: {
-      company: anafData?.name || null,                    // Official company name
-      cif: anafData?.cui?.toString() || null,              // CIF as string
-      active: !anafData?.inactive,                          // Active status
-      inactiveSince: anafData?.inactiveSince || null,       // When became inactive
-      reactivatedSince: anafData?.reactivatedSince || null,  // When reactivated
-      address: anafData?.address || null,                   // Registered address
-      registrationNumber: anafData?.registrationNumber || null, // J40/... number
-      caenCode: anafData?.caenCode || null,                 // Business activity code
-      vatRegistered: anafData?.vatRegistered || false,      // TVA status
-      eFacturaRegistered: anafData?.eFacturaRegistered || false // e-Factura status
+      company: anafData?.name || null,
+      cif: anafData?.cui?.toString() || null,
+      active: !anafData?.inactive,
+      inactiveSince: anafData?.inactiveSince || null,
+      reactivatedSince: anafData?.reactivatedSince || null,
+      address: anafData?.address || null,
+      registrationNumber: anafData?.registrationNumber || null,
+      caenCode: anafData?.caenCode || null,
+      vatRegistered: anafData?.vatRegistered || false,
+      eFacturaRegistered: anafData?.eFacturaRegistered || false
     }
   };
   
@@ -260,10 +258,10 @@ export async function getCompanyData() {
   }
 
   // Stale or missing cache → try ANAF, fall back to stale cache if ANAF fails
-  console.log(`Fetching fresh company data from ANAF for CIF: ${COMPANY_CIF}`);
+  console.log(`Fetching fresh company data from ANAF for CIF: ${COMPANY_ID}`);
   let anafData;
   try {
-    anafData = await getCompanyFromANAF(COMPANY_CIF);
+    anafData = await getCompanyFromANAF(COMPANY_ID);
   } catch (err) {
     if (cachedData?._stale) {
       console.log(`⚠️ ANAF unreachable (${err.message}) — falling back to stale cache`);
@@ -325,7 +323,7 @@ export async function validateAndGetCompany() {
   console.log("\n=== Step 3: Validate via Peviitor ===\n");
   let peviitorData = null;
   try {
-    peviitorData = await getCompanyFromPeviitor(COMPANY_BRAND);
+    peviitorData = await getCompanyFromPeviitor(companyConfig.company);
     console.log("Peviitor data fetched successfully");
   } catch (e) {
     console.log("Peviitor API error:", e.message);
