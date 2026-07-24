@@ -133,7 +133,7 @@ describe('Integration: API Workflow', () => {
       expect(result.company).toBe(COMPANY_CONFIG.company);
       expect(result.status).toBe('activ');
       expect(Array.isArray(result.location)).toBe(true);
-      expect(msg.lastScraped).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+      expect(result.lastScraped).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }, 15000);
 
     itIfSolr('should have required company model fields', async () => {
