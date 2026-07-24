@@ -256,10 +256,9 @@ describe('E2E: Full Scraping Pipeline', () => {
     }, 15000);
 
     itIfSolr('should have MSG company core entry with required fields', async () => {
-      const result = await solr.queryCompanySOLR(`id:${TEST_CIF}`);
+      const msg = await solr.getCompanyByCif(TEST_CIF);
 
-      expect(result.numFound).toBe(1);
-      const msg = result.docs[0];
+      expect(msg).not.toBeNull();
       expect(msg.company).toBe('MSG SYSTEMS ROMÂNIA SRL');
       expect(msg.status).toBe('activ');
     }, 15000);
