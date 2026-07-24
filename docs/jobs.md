@@ -5,16 +5,16 @@
 | Field | Value |
 |-------|-------|
 | CIF | 24415960 |
-| Brand | MSG Systems |
+| Brand | .msg |
 | Status | activ |
 | Location | Str. SAMUIEL BRASSAI, 9, Municipiul Cluj-Napoca, Cluj |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
-| Careers | [https://msg-systems.ro/en/careers](https://msg-systems.ro/en/careers) |
+| Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
 | Last Scraped | 2026-07-24 |
 
 ## Current Job Listings (29)
 
-_Generated: 2026-07-24T05:19:37.123Z_
+_Generated: 2026-07-24T08:26:24.628Z_
 
 ### Senior Java Developer
 
