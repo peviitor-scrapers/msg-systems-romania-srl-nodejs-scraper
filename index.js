@@ -194,6 +194,7 @@ async function main() {
       await upsertCompany({
         id: cif,
         company,
+        brand: companyConfig.brand || undefined,
         status: "activ",
         location: address ? [address] : companyConfig.location,
         website: companyConfig.website,
@@ -229,6 +230,7 @@ async function main() {
     const companyData = {
       id: localCif,
       company: transformedPayload.company,
+      brand: companyConfig.brand || undefined,
       status: "activ",
       location: address ? [address] : companyConfig.location,
       website: companyConfig.website,

@@ -20,6 +20,7 @@ import companyConfig from "./config/company.js";
 const Peviitor_API_URL = "https://api.peviitor.ro/v1/company/";
 
 const COMPANY_ID = companyConfig.id;
+const COMPANY_BRAND = companyConfig.brand || null;
 
 // Cache TTL — re-fetch from ANAF if cached data is older than this
 const CACHE_MAX_AGE_DAYS = 7;
