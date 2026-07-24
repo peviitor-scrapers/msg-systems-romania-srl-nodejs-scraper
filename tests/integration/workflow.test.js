@@ -126,43 +126,40 @@ describe('Integration: API Workflow', () => {
     });
 
     itIfSolr('should query company core by ID', async () => {
-      const result = await solr.queryCompanySOLR(`id:${MSG_CIF}`);
+      const result = await solr.getCompanyByCif(MSG_CIF);
 
-      expect(result.numFound).toBe(1);
-      const msg = result.docs[0];
-      expect(msg.id).toBe(MSG_CIF);
-      expect(msg.company).toBe(COMPANY_CONFIG.company);
-      expect(msg.status).toBe('activ');
-      expect(Array.isArray(msg.location)).toBe(true);
+      expect(result).not.toBeNull();
+      expect(result.id).toBe(MSG_CIF);
+      expect(result.company).toBe(COMPANY_CONFIG.company);
+      expect(result.status).toBe('activ');
+      expect(Array.isArray(result.location)).toBe(true);
       expect(msg.lastScraped).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     }, 15000);
 
     itIfSolr('should have required company model fields', async () => {
-      const result = await solr.queryCompanySOLR(`id:${MSG_CIF}`);
-      const msg = result.docs[0];
+      const result = await solr.getCompanyByCif(MSG_CIF);
 
-      expect(msg).toHaveProperty('id', MSG_CIF);
-      expect(msg).toHaveProperty('company');
-      expect(msg).toHaveProperty('status');
-      expect(['activ', 'suspendat', 'inactiv', 'radiat']).toContain(msg.status);
-      expect(msg).toHaveProperty('location');
-      expect(Array.isArray(msg.location)).toBe(true);
-      expect(msg).toHaveProperty('website');
-      expect(Array.isArray(msg.website)).toBe(true);
-      expect(msg.website[0]).toMatch(/^https?:\/\/.+/);
-      expect(msg).toHaveProperty('career');
-      expect(Array.isArray(msg.career)).toBe(true);
-      expect(msg.career[0]).toMatch(/^https?:\/\/.+/);
-      expect(msg).toHaveProperty('lastScraped');
-      expect(msg).toHaveProperty('scraperFile');
+      expect(result).toHaveProperty('id', MSG_CIF);
+      expect(result).toHaveProperty('company');
+      expect(result).toHaveProperty('status');
+      expect(['activ', 'suspendat', 'inactiv', 'radiat']).toContain(result.status);
+      expect(result).toHaveProperty('location');
+      expect(Array.isArray(result.location)).toBe(true);
+      expect(result).toHaveProperty('website');
+      expect(Array.isArray(result.website)).toBe(true);
+      expect(result.website[0]).toMatch(/^https?:\/\/.+/);
+      expect(result).toHaveProperty('career');
+      expect(Array.isArray(result.career)).toBe(true);
+      expect(result.career[0]).toMatch(/^https?:\/\/.+/);
+      expect(result).toHaveProperty('lastScraped');
+      expect(result).toHaveProperty('scraperFile');
     }, 15000);
 
     itIfSolr('should have optional field (group) if present', async () => {
-      const result = await solr.queryCompanySOLR(`id:${MSG_CIF}`);
-      const msg = result.docs[0];
+      const result = await solr.getCompanyByCif(MSG_CIF);
 
-      if (msg.group !== undefined) {
-        expect(typeof msg.group).toBe('string');
+      if (result.group !== undefined) {
+        expect(typeof result.group).toBe('string');
       }
     }, 15000);
   });
@@ -248,10 +245,10 @@ describe('Integration: API Workflow', () => {
     itIfSolr('should have matching CIF in company core', async () => {
       const companyResult = await companyModule.validateAndGetCompany();
 
-      const solrResult = await solr.queryCompanySOLR(`id:${MSG_CIF}`);
-      expect(solrResult.numFound).toBe(1);
-      expect(solrResult.docs[0].id).toBe(MSG_CIF);
-      expect(solrResult.docs[0].company).toBe(COMPANY_CONFIG.company);
+      const companyData = await solr.getCompanyByCif(MSG_CIF);
+      expect(companyData).not.toBeNull();
+      expect(companyData.id).toBe(MSG_CIF);
+      expect(companyData.company).toBe(COMPANY_CONFIG.company);
     }, 30000);
 
     itIfSolr('should validate company and query SOLR for existing jobs', async () => {
