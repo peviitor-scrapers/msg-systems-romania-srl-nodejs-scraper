@@ -87,30 +87,85 @@ describe('solr.js', () => {
     });
   });
 
-  describe('queryCompanySOLR', () => {
-    it('should return company data', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(1, [
-        { id: '24415960', company: 'MSG SYSTEMS ROMÂNIA SRL', status: 'activ' }
-      ]));
+  describe('getCompanyByCif', () => {
+    it('should return company data via API', async () => {
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({ success: true, total: 1, count: 1, data: [
+          { id: '24415960', company: 'MSG SYSTEMS ROMÂNIA SRL', status: 'activ' }
+        ] })
+      });
 
-      const result = await solr.queryCompanySOLR('id:24415960');
+      const result = await solr.getCompanyByCif('24415960');
 
-      expect(result.numFound).toBe(1);
-      expect(result.docs[0].status).toBe('activ');
+      expect(result).toHaveProperty('id', '24415960');
+      expect(result.status).toBe('activ');
     });
 
-    it('should return empty when company not found', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(0, []));
+    it('should return null when company not found', async () => {
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({ success: true, total: 0, count: 0, data: [] })
+      });
 
-      const result = await solr.queryCompanySOLR('id:00000000');
+      const result = await solr.getCompanyByCif('00000000');
 
-      expect(result.numFound).toBe(0);
+      expect(result).toBeNull();
     });
 
     it('should throw on HTTP error', async () => {
       mockFetch.mockResolvedValue(makeErrorResponse(401, 'Unauthorized'));
 
-      await expect(solr.queryCompanySOLR('id:24415960')).rejects.toThrow('SOLR company query error: 401');
+      await expect(solr.getCompanyByCif('24415960')).rejects.toThrow('API company search error: 401');
+    });
+  });
+
+  describe('searchCompanyByName', () => {
+    it('should return matching companies via API', async () => {
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({ success: true, total: 2, count: 2, data: [
+          { id: '24415960', company: 'MSG SYSTEMS ROMÂNIA SRL', brand: '.msg' },
+          { id: '5268838', company: 'CONCEPT MSG TRADE SRL', brand: 'CONCEPT MSG TRADE' }
+        ] })
+      });
+
+      const results = await solr.searchCompanyByName('msg');
+
+      expect(results).toHaveLength(2);
+      expect(results[0].company).toContain('MSG');
+    });
+
+    it('should return empty array when no matches', async () => {
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({ success: true, total: 0, count: 0, data: [] })
+      });
+
+      const results = await solr.searchCompanyByName('zzzzz');
+
+      expect(results).toEqual([]);
+    });
+  });
+
+  describe('upsertCompany', () => {
+    it('should upsert company via API', async () => {
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({ success: true, id: '24415960', message: 'upserted' })
+      });
+
+      await expect(solr.upsertCompany({
+        id: '24415960',
+        company: 'MSG SYSTEMS ROMÂNIA SRL',
+        brand: '.msg'
+      })).resolves.not.toThrow();
+    });
+
+    it('should throw on API error', async () => {
+      mockFetch.mockResolvedValue(makeErrorResponse(500, 'Internal Server Error'));
+
+      await expect(solr.upsertCompany({ id: '24415960', company: 'TEST' })).rejects.toThrow('API company upsert error: 500');
     });
   });
 

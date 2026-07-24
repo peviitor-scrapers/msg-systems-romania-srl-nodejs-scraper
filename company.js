@@ -17,7 +17,7 @@ import companyConfig from "./config/company.js";
 // ============================================================================
 
 // Peviitor API base URL for company validation
-const Peviitor_API_URL = "https://api.peviitor.ro/v1/company/";
+const Peviitor_API_URL = "https://api.peviitor.ro/v1/firme/company/";
 
 const COMPANY_ID = companyConfig.id;
 const COMPANY_BRAND = companyConfig.brand || null;
@@ -76,7 +76,10 @@ async function getCompanyFromPeviitor(companyName) {
   }
   
   const data = await res.json();
-  return data.companies?.[0] || null;
+  if (!data.success) {
+    throw new Error(`Peviitor API failed: ${JSON.stringify(data)}`);
+  }
+  return data.data?.[0] || null;
 }
 
 // ============================================================================

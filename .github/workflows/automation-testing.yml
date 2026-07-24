@@ -91,29 +91,27 @@ jobs:
         env:
           SOLR_AUTH: ${{ secrets.SOLR_AUTH }}
         run: |
-          # Load company identity from single source of truth
-          CIF=$(jq -r '.cif' config/company.json)
-          LEGAL_NAME=$(jq -r '.legalName' config/company.json)
-          BRAND=$(jq -r '.brand' config/company.json)
-          WEBSITE=$(jq -r '.website' config/company.json)
-          CAREER=$(jq -r '.careerUrl' config/company.json)
-          DEFAULT_LOC=$(jq -r '.defaultLocation' config/company.json)
-          SCRAPER_FILE=$(jq -r '.scraperFile' config/company.json)
+          # Build Solr document directly from config/company.json (Company Model Schema)
           TODAY=$(date -u +%Y-%m-%d)
+          BRAND=$(jq -r '.brand' config/company.json)
+          CIF=$(jq -r '.id' config/company.json)
+
+          jq -n \
+            --slurpfile company config/company.json \
+            --arg today "$TODAY" \
+            '{
+              id:            $company[0].id,
+              company:       $company[0].company,
+              brand:         $company[0].brand,
+              status:        $company[0].status,
+              location:      $company[0].location,
+              website:       $company[0].website,
+              career:        $company[0].career,
+              lastScraped:   $today,
+              scraperFile:   $company[0].scraperFile
+            }' | jq -s '.' > company_data.json
 
           echo "Upserting ${BRAND} (CIF: ${CIF}) into Solr company core..."
-          jq -n \
-            --arg id "$CIF" \
-            --arg company "$LEGAL_NAME" \
-            --arg brand "$BRAND" \
-            --arg website "$WEBSITE" \
-            --arg career "$CAREER" \
-            --arg loc "$DEFAULT_LOC" \
-            --arg today "$TODAY" \
-            --arg scraperFile "$SCRAPER_FILE" \
-            '[{id:$id,company:$company,brand:$brand,status:"activ",location:[$loc],website:[$website],career:[$career],lastScraped:$today,scraperFile:$scraperFile}]' \
-            > company_data.json
-
           curl -s --user "${SOLR_AUTH}" \
             "https://solr.peviitor.ro/solr/company/update/json?commit=true" \
             -X POST \
