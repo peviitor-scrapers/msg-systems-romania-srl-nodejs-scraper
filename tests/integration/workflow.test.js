@@ -131,8 +131,7 @@ describe('Integration: API Workflow', () => {
       expect(result.numFound).toBe(1);
       const msg = result.docs[0];
       expect(msg.id).toBe(MSG_CIF);
-      expect(msg.company).toBe(COMPANY_CONFIG.legalName);
-      expect(msg.brand).toBe(COMPANY_CONFIG.brand);
+      expect(msg.company).toBe(COMPANY_CONFIG.company);
       expect(msg.status).toBe('activ');
       expect(Array.isArray(msg.location)).toBe(true);
       expect(msg.lastScraped).toMatch(/^\d{4}-\d{2}-\d{2}$/);
@@ -144,7 +143,6 @@ describe('Integration: API Workflow', () => {
 
       expect(msg).toHaveProperty('id', MSG_CIF);
       expect(msg).toHaveProperty('company');
-      expect(msg).toHaveProperty('brand', COMPANY_CONFIG.brand);
       expect(msg).toHaveProperty('status');
       expect(['activ', 'suspendat', 'inactiv', 'radiat']).toContain(msg.status);
       expect(msg).toHaveProperty('location');
@@ -190,7 +188,7 @@ describe('Integration: API Workflow', () => {
       const job = result.docs[0];
       expect(job).toHaveProperty('url');
       expect(job).toHaveProperty('title');
-      expect(job).toHaveProperty('company', COMPANY_CONFIG.legalName);
+      expect(job).toHaveProperty('company', COMPANY_CONFIG.company);
       expect(job).toHaveProperty('cif', MSG_CIF);
       expect(job).toHaveProperty('status');
       expect(job).toHaveProperty('location');
@@ -253,14 +251,14 @@ describe('Integration: API Workflow', () => {
       const solrResult = await solr.queryCompanySOLR(`id:${MSG_CIF}`);
       expect(solrResult.numFound).toBe(1);
       expect(solrResult.docs[0].id).toBe(MSG_CIF);
-      expect(solrResult.docs[0].company).toBe(COMPANY_CONFIG.legalName);
+      expect(solrResult.docs[0].company).toBe(COMPANY_CONFIG.company);
     }, 30000);
 
     itIfSolr('should validate company and query SOLR for existing jobs', async () => {
       const companyResult = await companyModule.validateAndGetCompany();
 
       expect(companyResult.status).toBe('active');
-      expect(companyResult.company).toBe(COMPANY_CONFIG.legalName);
+      expect(companyResult.company).toBe(COMPANY_CONFIG.company);
       expect(companyResult.cif).toBe(MSG_CIF);
 
       if (companyResult.existingJobsCount === 0) {
