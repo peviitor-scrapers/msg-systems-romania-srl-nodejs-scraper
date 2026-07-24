@@ -10,11 +10,11 @@
 | Location | Str. SAMUIEL BRASSAI, 9, Municipiul Cluj-Napoca, Cluj |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://msg-systems.ro/en/careers](https://msg-systems.ro/en/careers) |
-| Last Scraped | 2026-07-23 |
+| Last Scraped | 2026-07-24 |
 
 ## Current Job Listings (29)
 
-_Generated: 2026-07-23T15:35:22.853Z_
+_Generated: 2026-07-24T05:19:37.123Z_
 
 ### Senior Java Developer
 
