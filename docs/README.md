@@ -50,6 +50,7 @@ job_seeker_ro_spider
 │   ├── unit/          # Teste unitare (API-uri mock-uite)
 │   ├── integration/   # Teste de integrare (ANAF + SOLR live)
 │   └── e2e/           # Teste end-to-end (pipelin complet)
+│   └── consistency/   # Verificări repo (public, branch, topics)
 └── .github/workflows/
     ├── job-seeker-ro-spider.yml     # Rulează zilnic la 6 AM UTC
     └── automation-testing.yml       # Teste automate la fiecare push/PR

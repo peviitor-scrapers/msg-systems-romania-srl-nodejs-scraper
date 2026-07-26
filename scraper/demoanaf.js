@@ -7,7 +7,7 @@
  *   node demoanaf.js search <brand>    - Search for companies
  *   node demoanaf.js <cif>             - Get company details by CIF
  * 
- * The core library is in src/anaf.js — this file only provides
+ * The core library is in scraper/anaf.js — this file only provides
  * the standalone CLI interface.
  */
 

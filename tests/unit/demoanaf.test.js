@@ -69,7 +69,7 @@ const CACHED_DATA = {
   onrcStatusLabel: 'Funcțiune'
 };
 
-describe('src/anaf.js', () => {
+describe('scraper/anaf.js', () => {
   let anaf;
 
   beforeAll(async () => {
