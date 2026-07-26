@@ -22,10 +22,8 @@ function restoreFile(path) {
   }
 }
 
-function clearAllCaches() {
-  for (const p of [COMPANY_JSON_PATH, ROOT_COMPANY_JSON_PATH]) {
-    if (fs.existsSync(p)) fs.unlinkSync(p);
-  }
+function clearAnafCache() {
+  if (fs.existsSync(COMPANY_JSON_PATH)) fs.unlinkSync(COMPANY_JSON_PATH);
 }
 
 function anafCompanyResponse(data) {
@@ -60,29 +58,38 @@ const MSG_ANAF_RECORD = {
   headquartersAddress: { locality: 'Bucureşti Sectorul 2' }
 };
 
+const COMPANY_CONFIG_TEMPLATE = {
+  id: "24415960",
+  company: "MSG SYSTEMS ROMÂNIA SRL",
+  brand: ".msg",
+  status: "activ",
+  location: ["Cluj-Napoca"],
+  website: ["https://www.msg-systems.ro"],
+  career: ["https://www.msg-systems.ro/en/careers/job-offerings/"],
+  scraperFile: "https://github.com/sebiboga/msg-systems-romania-srl-nodejs-scraper/actions/workflows/job-seeker-ro-spider.yml"
+};
+
+function writeCompanyConfig(lastScraped) {
+  fs.mkdirSync("scraper/config", { recursive: true });
+  fs.writeFileSync(ROOT_COMPANY_JSON_PATH, JSON.stringify({
+    ...COMPANY_CONFIG_TEMPLATE,
+    lastScraped
+  }), 'utf-8');
+}
+
 describe('company.js', () => {
   let company;
+  let companyConfig;
 
   beforeAll(async () => {
     process.env.SOLR_AUTH = 'test:test';
     fs.mkdirSync("scraper", { recursive: true });
-    fs.mkdirSync("scraper/config", { recursive: true });
     backupFile(COMPANY_JSON_PATH);
     backupFile(ROOT_COMPANY_JSON_PATH);
-    if (!fs.existsSync(ROOT_COMPANY_JSON_PATH)) {
-      fs.writeFileSync(ROOT_COMPANY_JSON_PATH, JSON.stringify({
-        id: "24415960",
-        company: "MSG SYSTEMS ROMÂNIA SRL",
-        brand: ".msg",
-        status: "activ",
-        location: ["Cluj-Napoca"],
-        website: ["https://www.msg-systems.ro"],
-        career: ["https://www.msg-systems.ro/en/careers/job-offerings/"],
-        lastScraped: "2026-01-01",
-        scraperFile: "https://github.com/sebiboga/msg-systems-romania-srl-nodejs-scraper/actions/workflows/job-seeker-ro-spider.yml"
-      }), 'utf-8');
-    }
+    writeCompanyConfig(new Date().toISOString().split('T')[0]);
     company = await import('../../scraper/company.js');
+    const configMod = await import('../../scraper/config/company.js');
+    companyConfig = configMod.default;
   });
 
   afterAll(() => {
@@ -93,10 +100,18 @@ describe('company.js', () => {
 
   beforeEach(() => {
     mockFetch.mockReset();
-    clearAllCaches();
+    clearAnafCache();
   });
 
   describe('getCompanyData (no cache)', () => {
+    beforeEach(() => {
+      companyConfig.lastScraped = '2020-01-01';
+    });
+
+    afterEach(() => {
+      companyConfig.lastScraped = new Date().toISOString().split('T')[0];
+    });
+
     it('should fetch MSG via direct CIF lookup and return company data', async () => {
       mockFetch.mockResolvedValueOnce(anafCompanyResponse(MSG_ANAF_RECORD));
 
@@ -134,6 +149,7 @@ describe('company.js', () => {
     };
 
     beforeEach(() => {
+      companyConfig.lastScraped = new Date().toISOString().split('T')[0];
       fs.writeFileSync(COMPANY_JSON_PATH, JSON.stringify(cachedData), 'utf-8');
     });
 
@@ -148,13 +164,13 @@ describe('company.js', () => {
   });
 
   describe('validateAndGetCompany', () => {
-    afterEach(() => {
-      clearAllCaches();
+    beforeEach(() => {
+      companyConfig.lastScraped = new Date().toISOString().split('T')[0];
+      writeCompanyConfig(companyConfig.lastScraped);
     });
 
     it('should return company data with status active', async () => {
       mockFetch
-        .mockResolvedValueOnce(anafCompanyResponse(MSG_ANAF_RECORD))
         .mockResolvedValueOnce(solrResponse(5, [
           { url: 'https://test.com/1', title: 'Job 1' },
           { url: 'https://test.com/2', title: 'Job 2' }
@@ -169,20 +185,5 @@ describe('company.js', () => {
       expect(result).toHaveProperty('existingJobsCount');
       expect(typeof result.existingJobsCount).toBe('number');
     });
-
-    // MSG e activă — testul inactive se rulează doar dacă firma e inactivă
-    if (MSG_ANAF_RECORD.inactive) {
-      it('should return inactive status when company is inactive', async () => {
-        const inactiveRecord = { ...MSG_ANAF_RECORD, inactive: true };
-
-        mockFetch
-          .mockResolvedValueOnce(anafCompanyResponse(inactiveRecord))
-          .mockResolvedValueOnce(solrResponse(0, []));
-
-        const result = await company.validateAndGetCompany();
-
-        expect(result).toHaveProperty('status', 'inactive');
-      });
-    }
   });
 });
