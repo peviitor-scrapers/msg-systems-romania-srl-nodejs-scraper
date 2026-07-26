@@ -28,7 +28,7 @@ const CACHE_MAX_AGE_DAYS = 7;
 // Root cache file (committed to repo, survives between CI runs)
 const ROOT_CACHE_PATH = "scraper/company.json";
 // Local tmp cache (per-run, gitignored)
-const TMP_CACHE_PATH = "tmp/company.json";
+const TMP_CACHE_PATH = "scraper/company-cache.json";
 
 // ============================================================================
 // COMPANY MODEL - Defines the expected schema for company data
@@ -179,7 +179,7 @@ function saveCompanyData(anafData, peviitorData) {
   const json = JSON.stringify(companyData, null, 2);
 
   // Always write tmp cache (per-run scratch)
-  fs.mkdirSync("tmp", { recursive: true });
+  fs.mkdirSync("scraper", { recursive: true });
   fs.writeFileSync(TMP_CACHE_PATH, json, "utf-8");
   console.log(`\n✅ Saved company data to ${TMP_CACHE_PATH}`);
 
@@ -208,7 +208,7 @@ function isCacheFresh(data) {
 }
 
 /**
- * Loads cached company data, checking tmp/ first (fresh per-run), then root (committed backup).
+ * Loads cached company data, checking scraper/company-cache.json first (fresh per-run), then scraper/company.json (committed backup).
  * Returns the cache if valid AND fresh. Returns null if stale or missing.
  * Returns `{ ...data, _stale: true }` if found but stale — caller may still use as fallback.
  */
@@ -238,7 +238,7 @@ function loadCachedCompanyData() {
 /**
  * Gets company data, preferring cache over live API calls.
  * CIF and brand are read from config/company.json.
- * Cache order: tmp/company.json → company.json (root) → ANAF live.
+ * Cache order: scraper/company-cache.json → scraper/company.json → ANAF live.
  * Stale cache is used as fallback if ANAF is unreachable.
  * @returns {Promise<Object>} - Company data with company name, CIF, and active status
  */

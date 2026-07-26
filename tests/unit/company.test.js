@@ -7,7 +7,7 @@ jest.unstable_mockModule('node-fetch', () => ({
   default: mockFetch
 }));
 
-const COMPANY_JSON_PATH = 'tmp/company.json';
+const COMPANY_JSON_PATH = 'scraper/company-cache.json';
 const ROOT_COMPANY_JSON_PATH = 'scraper/company.json';
 
 function backupFile(path) {
@@ -65,7 +65,7 @@ describe('company.js', () => {
 
   beforeAll(async () => {
     process.env.SOLR_AUTH = 'test:test';
-    fs.mkdirSync("tmp", { recursive: true });
+    fs.mkdirSync("scraper", { recursive: true });
     backupFile(COMPANY_JSON_PATH);
     backupFile(ROOT_COMPANY_JSON_PATH);
     company = await import('../../scraper/company.js');

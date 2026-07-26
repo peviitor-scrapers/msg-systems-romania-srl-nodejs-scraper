@@ -182,8 +182,8 @@ async function main() {
           expiredJobs: results.expired.map(j => ({ url: j.url, title: j.title })),
           errorJobs: results.error.map(j => ({ url: j.url, error: j.error }))
         };
-        fs.writeFileSync("tmp/expired-jobs.json", JSON.stringify(output, null, 2));
-        console.log("Saved tmp/expired-jobs.json");
+        fs.writeFileSync("scraper/expired-jobs.json", JSON.stringify(output, null, 2));
+        console.log("Saved scraper/expired-jobs.json");
       }
     }
     return;

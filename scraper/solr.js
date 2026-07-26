@@ -310,9 +310,9 @@ async function runVerification(cif) {
     console.log(`${i+1}. ${job.title} (${job.location?.join(', ')}) - ${job.workmode}`);
   });
 
-  if (fs.existsSync("tmp/jobs_existing.json")) {
+  if (fs.existsSync("scraper/jobs_existing.json")) {
     console.log("\n=== Verify existing URLs ===\n");
-    const existing = JSON.parse(fs.readFileSync("tmp/jobs_existing.json", "utf-8"));
+    const existing = JSON.parse(fs.readFileSync("scraper/jobs_existing.json", "utf-8"));
     const existingJobs = existing.jobs || [];
     console.log(`Checking ${existingJobs.length} URLs...`);
 
@@ -333,10 +333,10 @@ async function runVerification(cif) {
     }
 
     if (invalidUrls.length === 0) {
-      console.log("\n✅ All URLs valid - deleting tmp/jobs_existing.json");
-      fs.unlinkSync("tmp/jobs_existing.json");
+      console.log("\n✅ All URLs valid - deleting scraper/jobs_existing.json");
+      fs.unlinkSync("scraper/jobs_existing.json");
     } else {
-      console.log("⚠️ Keeping tmp/jobs_existing.json for reference");
+      console.log("⚠️ Keeping scraper/jobs_existing.json for reference");
     }
   }
 }
@@ -369,8 +369,8 @@ async function runExtract(cif) {
       jobs: result.docs
     };
 
-    fs.writeFileSync("tmp/jobs_existing.json", JSON.stringify(backup, null, 2), "utf-8");
-    console.log("\n✅ Saved existing jobs to tmp/jobs_existing.json\n");
+    fs.writeFileSync("scraper/jobs_existing.json", JSON.stringify(backup, null, 2), "utf-8");
+    console.log("\n✅ Saved existing jobs to scraper/jobs_existing.json\n");
   } catch (err) {
     console.error("Failed to extract existing jobs:", err.message);
     process.exit(1);
