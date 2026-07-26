@@ -27,21 +27,29 @@ job_seeker_ro_spider
 ## Structură proiect
 
 ```
-├── config/company.json         # Sursa unică de adevăr (CIF, brand, URL-uri)
-├── config/company.js           # Loader ESM pentru config/company.json
-├── index.js                    # Orchestrator principal
-├── company.js                  # Validare companie (ANAF + Peviitor + SOLR) cu cache 7 zile
-├── demoanaf.js                 # CLI wrapper pentru src/anaf.js
-├── src/anaf.js                 # Modul ANAF API (search + company details)
-├── src/markdown-generator.js   # Generează docs/jobs.md după scrape
-├── src/job-validator.js        # Primitivă comună: validateByHead, validateByContent
-├── solr.js                     # Operații SOLR (query, upsert, delete, company)
-├── company.json                # Cache ANAF (committed, TTL 7 zile, fallback la stale)
-├── ROBOTS.md          # Analiză robots.txt și politici de scraping
+├── scraper/
+│   ├── index.js                # Orchestrator principal
+│   ├── company.js              # Validare companie (ANAF + Peviitor + SOLR) cu cache 7 zile
+│   ├── solr.js                 # Operații SOLR (query, upsert, delete, company)
+│   ├── demoanaf.js             # CLI wrapper pentru anaf.js
+│   ├── validate-jobs.js        # Validator job URLs (activ/expirat)
+│   ├── anaf.js                 # Modul ANAF API (search + company details)
+│   ├── markdown-generator.js   # Generează docs/jobs.md după scrape
+│   ├── job-validator.js        # Primitivă comună: validateByHead, validateByContent
+│   ├── company.json            # Cache ANAF (committed, TTL 7 zile, fallback la stale)
+│   ├── delete_request.json     # Payload SOLR delete (mentenanță)
+│   └── config/
+│       ├── company.json        # Sursa unică de adevăr (CIF, brand, URL-uri)
+│       └── company.js          # Loader ESM pentru config/company.json
+├── ai/                         # Prompturi instrucțiuni AI
+│   ├── AGENTS.md
+│   ├── INSTRUCTIONS.md
+│   ├── VERIFY.md
+│   └── ...
 ├── tests/
-│   ├── unit/          # 77 teste unitare (API-uri mock-uite)
-│   ├── integration/   # 16 teste de integrare (ANAF + SOLR live)
-│   └── e2e/           # 11 teste end-to-end (pipelin complet)
+│   ├── unit/          # Teste unitare (API-uri mock-uite)
+│   ├── integration/   # Teste de integrare (ANAF + SOLR live)
+│   └── e2e/           # Teste end-to-end (pipelin complet)
 └── .github/workflows/
     ├── job-seeker-ro-spider.yml     # Rulează zilnic la 6 AM UTC
     └── automation-testing.yml       # Teste automate la fiecare push/PR
@@ -61,7 +69,7 @@ job_seeker_ro_spider
 
 MSG Systems careers pages sunt accesibile public. Scraper-ul face o singură cerere HTML per pagină, parsing-ul cu cheerio, fără autentificare.
 
-Pentru analiza completă, vezi [ROBOTS.md](../ROBOTS.md).
+Pentru analiza completă, vezi [ROBOTS.md](../ai/ROBOTS.md).
 
 ## Testare
 

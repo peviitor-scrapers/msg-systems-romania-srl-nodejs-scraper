@@ -30,7 +30,7 @@ Proiectul automatizează colectarea zilnică a job-urilor MSG Systems din Român
 - Cross-validează cu Peviitor API
 - Stochează în SOLR (job core + company core)
 - Generează `docs/jobs.md` automat — accesibil pe GitHub Pages
-- **Identitate companie într-un singur fișier** (`config/company.json`)
+- **Identitate companie într-un singur fișier** (`scraper/config/company.json`)
 - GitHub Actions: scrape zilnic + testare automată (unit, integration, e2e, consistency)
 - Teste SOLR condiționale — auto-skip când `SOLR_AUTH` nu e setat
 - Se identifică prin User-Agent: `job_seeker_ro_spider`
@@ -38,18 +38,25 @@ Proiectul automatizează colectarea zilnică a job-urilor MSG Systems din Român
 ## Project Structure
 
 ```
-├── index.js                    # Main scraper (HTML/cheerio single-page)
-├── company.js                  # Company validation via ANAF + Peviitor + SOLR
-├── demoanaf.js                 # CLI wrapper for src/anaf.js
-├── solr.js                     # SOLR operations (query, upsert, delete, company)
-├── validate-jobs.js            # Job URL validator — checks active/expired
-├── config/
-│   ├── company.json            # Single source of truth: CIF, brand, URLs
-│   └── company.js              # ESM loader for company.json
-├── src/
+├── scraper/
+│   ├── index.js                # Main scraper (HTML/cheerio single-page)
+│   ├── company.js              # Company validation via ANAF + Peviitor + SOLR
+│   ├── solr.js                 # SOLR operations (query, upsert, delete, company)
+│   ├── demoanaf.js             # CLI wrapper for anaf.js
+│   ├── validate-jobs.js        # Job URL validator — checks active/expired
 │   ├── anaf.js                 # ANAF API core module
 │   ├── markdown-generator.js   # Generates docs/jobs.md
-│   └── job-validator.js        # Shared validateByHead + validateByContent
+│   ├── job-validator.js        # Shared validateByHead + validateByContent
+│   ├── company.json            # ANAF cache (committed, 7-day TTL)
+│   ├── delete_request.json     # SOLR delete payload (maintenance)
+│   └── config/
+│       ├── company.json        # Single source of truth: CIF, brand, URLs
+│       └── company.js          # ESM loader for company.json
+├── ai/                         # AI agent prompts & instructions
+│   ├── AGENTS.md
+│   ├── INSTRUCTIONS.md
+│   ├── VERIFY.md
+│   └── ...
 ├── tests/
 │   ├── validate-msg-jobs.js    # CI fast validator (HEAD only)
 │   ├── unit/

@@ -33,7 +33,7 @@ When working on this scraper:
    - Fetch the latest README.md from peviitor_core main branch
    - Compare with current job-model.md and company-model.md
    - Update local files if there are differences
-   - Update index.js mapping logic if field requirements changed
+   - Update scraper/index.js mapping logic if field requirements changed
 
 ## Technologies
 
@@ -65,17 +65,17 @@ When working on this scraper:
 export SOLR_AUTH=your-solr-credentials
 
 # Run the full scraper workflow (single command)
-node index.js
+node scraper/index.js
 
 # Test mode (one page only, limit 10 jobs)
-node index.js --test
+node scraper/index.js --test
 ```
 
 > **Important**: Scraper does NOT delete jobs from other sources (ANOFM, etc). It only upserts MSG Systems jobs. Existing jobs are preserved.
 
 ## Full Workflow (automatic)
 
-When running `node index.js`, the following steps happen automatically:
+When running `node scraper/index.js`, the following steps happen automatically:
 
 1. **Check existing jobs count** - Query SOLR by CIF (read-only)
 2. **Validate company via ANAF** - Check company exists and is active
@@ -89,17 +89,17 @@ When running `node index.js`, the following steps happen automatically:
 ## Workflow Flowchart
 
 ```
-config/company.json (single source of truth: CIF, brand, URLs)
+scraper/config/company.json (single source of truth: CIF, brand, URLs)
     │
     ▼
-index.js
+scraper/index.js
     │
     ▼
 querySOLR(CIF) - just count, don't delete
     │
     ▼
-company.js (validate company)
-    ├── load cache (tmp/company.json → company.json)
+scraper/company.js (validate company)
+    ├── load cache (scraper/company.json)
     │   └── if fresh (<7 days), skip ANAF entirely
     ├── ANAF API ──► get company name + CIF (only if cache stale/missing)
     ├── Peviitor API ──► validate company model
@@ -127,17 +127,17 @@ generateJobsMarkdown() → docs/jobs.md
 
 | File | Role |
 |------|------|
-| `config/company.json` | **Single source of truth** for company identity (CIF, brand, URLs) |
-| `config/company.js` | ESM wrapper that loads `config/company.json` for Node code |
-| `index.js` | Main entry point - full workflow: validate company → scrape → transform → upsert → generate docs/jobs.md |
-| `company.js` | Validates company via ANAF + Peviitor; caches in root `company.json` (7-day TTL) and `tmp/company.json` |
-| `solr.js` | SOLR operations module - query, delete, upsert jobs + standalone commands |
-| `validate-jobs.js` | Manual deep validator (content-aware); thin CLI wrapper over `src/job-validator.js` |
-| `src/anaf.js` | Company data module - ANAF (demoanaf.ro) + CUIScan (cuiscan.ro) fallback + CUIFirma search fallback. No retries — fast fail + fallback. |
-| `src/markdown-generator.js` | Generates `docs/jobs.md` with company info and all scraped jobs |
-| `src/job-validator.js` | Shared validation primitives: `validateByHead`, `validateByContent`, `DEFAULT_EXPIRED_KEYWORDS` |
-| `demoanaf.js` | CLI entry point for ANAF module (thin wrapper around src/anaf.js) |
-| `tests/validate-msg-jobs.js` | CI fast validator (HEAD only); thin CLI over `src/job-validator.js` + `solr.js` |
+| `scraper/config/company.json` | **Single source of truth** for company identity (CIF, brand, URLs) |
+| `scraper/config/company.js` | ESM wrapper that loads `scraper/config/company.json` for Node code |
+| `scraper/index.js` | Main entry point - full workflow: validate company → scrape → transform → upsert → generate docs/jobs.md |
+| `scraper/company.js` | Validates company via ANAF + Peviitor; caches in `scraper/company.json` (7-day TTL) |
+| `scraper/solr.js` | SOLR operations module - query, delete, upsert jobs + standalone commands |
+| `scraper/validate-jobs.js` | Manual deep validator (content-aware); thin CLI wrapper over `scraper/job-validator.js` |
+| `scraper/anaf.js` | Company data module - ANAF (demoanaf.ro) + CUIScan (cuiscan.ro) fallback + CUIFirma search fallback. No retries — fast fail + fallback. |
+| `scraper/markdown-generator.js` | Generates `docs/jobs.md` with company info and all scraped jobs |
+| `scraper/job-validator.js` | Shared validation primitives: `validateByHead`, `validateByContent`, `DEFAULT_EXPIRED_KEYWORDS` |
+| `scraper/demoanaf.js` | CLI entry point for ANAF module (thin wrapper around `scraper/anaf.js`) |
+| `tests/validate-msg-jobs.js` | CI fast validator (HEAD only); thin CLI over `scraper/job-validator.js` + `scraper/solr.js` |
 | `tests/unit/index.test.js` | Unit tests for parseMsgJobs, mapToJobModel, transformJobsForSOLR |
 | `tests/unit/company.test.js` | Unit tests for validateAndGetCompany and fallback caching |
 | `tests/unit/solr.test.js` | Unit tests for SOLR query, upsert, delete operations |
@@ -162,8 +162,8 @@ The scraper is intentionally slow to be a good citizen:
 
 | Setting | Value | Where |
 |---------|-------|-------|
-| Request timeout | 10000 ms | `index.js` — `TIMEOUT` constant |
-| ANAF fallback | 1 try demoanaf.ro → 1 try cuiscan.ro → cache | `src/anaf.js` |
+| Request timeout | 10000 ms | `scraper/index.js` — `TIMEOUT` constant |
+| ANAF fallback | 1 try demoanaf.ro → 1 try cuiscan.ro → cache | `scraper/anaf.js` |
 | Concurrency | 1 (sequential) | No `Promise.all` for paginated fetches |
 | User-Agent | `job_seeker_ro_spider` | Identifies the scraper in server logs |
 
@@ -183,28 +183,28 @@ Derived scrapers should keep these defaults unless the target site explicitly pe
 
 ```bash
 # Verify jobs in SOLR by CIF
-node solr.js <CIF>
+node scraper/solr.js <CIF>
 
 # Extract existing jobs from SOLR by CIF
-node solr.js extract <CIF>
+node scraper/solr.js extract <CIF>
 
 # Query company in SOLR
-node solr.js company <search_term>
+node scraper/solr.js company <search_term>
 
 # Get company details from ANAF by CIF
-node demoanaf.js <CIF>
+node scraper/demoanaf.js <CIF>
 
 # Search companies in ANAF by brand
-node demoanaf.js search <brand>
+node scraper/demoanaf.js search <brand>
 
 # Validate job URLs from SOLR by CIF (check active/expired)
-node validate-jobs.js <CIF>
+node scraper/validate-jobs.js <CIF>
 
 # Validate a single job URL
-node validate-jobs.js url <url>
+node scraper/validate-jobs.js url <url>
 
 # Delete expired jobs from SOLR by CIF
-node validate-jobs.js <CIF> --delete
+node scraper/validate-jobs.js <CIF> --delete
 ```
 
 ## Testing
@@ -222,7 +222,7 @@ npm test
 
 ## Temporary Files
 
-All temporary/scratch files must be placed in `tmp/` inside the project root (never outside the project). The `tmp/` directory is in `.gitignore` and will not be committed.
+**NU folosi `tmp/` niciodată.** Toate fișierele temporare/scratch trebuie scrise în folderul `scraper/` sau în subfolderele lui. Nu crea directoare separate temporare.
 
 ## Technical Debt / Completed
 
