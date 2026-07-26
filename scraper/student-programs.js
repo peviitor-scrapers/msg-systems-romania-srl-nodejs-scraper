@@ -58,8 +58,16 @@ function parseStudentPrograms(html) {
     const applyLink = $section.find("a[href*='mailto:']").first().attr("href") || "";
 
     if (title) {
+      const slug = title.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .replace(/^-|-$/g, '');
+      const url = `${STUDENT_PROGRAMS_URL}#${slug}`;
+
       programs.push({
         title,
+        url,
         description,
         technologies,
         period,

@@ -268,7 +268,7 @@ async function main() {
       const programs = await getStudentPrograms();
       if (programs.length > 0) {
         const programJobs = programs.map(p => ({
-          url: p.applyLink || LISTING_URL,
+          url: p.url,
           title: p.title,
           company: COMPANY_NAME,
           cif: localCif,
