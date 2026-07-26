@@ -171,7 +171,10 @@ describe('solr.js', () => {
 
   describe('upsertJobs', () => {
     it('should accept array of jobs', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(0, []));
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: async () => ({ success: 'Jobs successfully uploaded to Solr', count: 1 })
+      });
 
       const testJob = {
         url: 'https://test.com/job1',
@@ -187,13 +190,7 @@ describe('solr.js', () => {
     it('should throw on HTTP error', async () => {
       mockFetch.mockResolvedValue(makeErrorResponse(400, 'Bad Request'));
 
-      await expect(solr.upsertJobs([{ url: 'https://test.com/bad' }])).rejects.toThrow('SOLR upsert error: 400');
-    });
-
-    it('should throw when SOLR_AUTH is missing', async () => {
-      delete process.env.SOLR_AUTH;
-      await expect(solr.upsertJobs([])).rejects.toThrow('SOLR_AUTH not set in environment');
-      process.env.SOLR_AUTH = 'test:test';
+      await expect(solr.upsertJobs([{ url: 'https://test.com/bad', title: 'Bad', company: 'X' }])).rejects.toThrow('API jobs upload error: 400');
     });
   });
 

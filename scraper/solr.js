@@ -6,14 +6,14 @@
  * for the peviitor.ro job aggregation system.
  * 
  * This module handles:
- * - Querying jobs by company CIF
+ * - Querying jobs by company CIF (direct Solr)
  * - Querying/upserting company data (via peviitor API)
- * - Adding/updating (upserting) jobs (direct Solr)
- * - Deleting jobs by CIF or URL
+ * - Adding/updating (upserting) jobs (via peviitor API)
+ * - Deleting jobs by CIF or URL (direct Solr)
  * - URL validation and cleanup
  * 
  * Solr Cores:
- * - job: Stores individual job listings (direct access)
+ * - job: Stores individual job listings (via API for writes, direct for reads/deletes)
  * - company: Stores company metadata (via API gateway)
  */
 
@@ -31,7 +31,7 @@ try {
 // CONFIGURATION
 // ============================================================================
 
-// Solr core URLs (direct access for job core only)
+// Solr core URLs (direct access for reads/deletes only)
 const SOLR_URL = "https://solr.peviitor.ro/solr/job";
 
 // Peviitor API base URL for company operations
@@ -42,7 +42,7 @@ const TIMEOUT = 10000;
 
 /**
  * Returns the SOLR_AUTH credential string ("user:password") from the environment,
- * throwing if it is missing. Used only for direct job core operations.
+ * throwing if it is missing. Used only for direct Solr core operations (reads/deletes).
  *
  * @returns {string} The SOLR_AUTH credential string
  * @throws {Error} If SOLR_AUTH is not set
@@ -236,37 +236,34 @@ export async function deleteJobByUrl(url) {
 }
 
 // ============================================================================
-// UPSERT OPERATIONS - Add or update jobs (job core)
+// UPSERT OPERATIONS - Add or update jobs (via peviitor API)
 // ============================================================================
 
 /**
- * Upserts (adds or updates) jobs to Solr
+ * Upserts (adds or updates) jobs via the peviitor API
  * Jobs are matched by URL - if URL exists, job is updated; otherwise, new job is added
+ * Diacritics in city names are auto-fixed, tags are auto-lowercased
  * @param {Array} jobs - Array of job objects to upsert
  */
 export async function upsertJobs(jobs) {
-  const AUTH = getSolrAuth();
+  const url = `${API_BASE_URL}/scraper/jobs/upload/`;
 
-  const params = new URLSearchParams({ commit: "true" });
-
-  const body = JSON.stringify(jobs);
-
-  const res = await fetch(`${SOLR_URL}/update?${params}`, {
+  const res = await fetch(url, {
     method: "POST",
     headers: {
-      "Authorization": "Basic " + Buffer.from(AUTH).toString("base64"),
       "Content-Type": "application/json",
       "User-Agent": "job_seeker_ro_spider"
     },
-    body
+    body: JSON.stringify(jobs)
   });
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`SOLR upsert error: ${res.status} - ${text}`);
+    throw new Error(`API jobs upload error: ${res.status} - ${text}`);
   }
 
-  console.log(`✅ Upserted ${jobs.length} jobs to SOLR.`);
+  const data = await res.json();
+  console.log(`✅ Upserted ${data.count ?? jobs.length} jobs via API.`);
 }
 
 // ============================================================================
