@@ -36,7 +36,6 @@ job_seeker_ro_spider
 │   ├── anaf.js                 # Modul ANAF API (search + company details)
 │   ├── markdown-generator.js   # Generează docs/jobs.md după scrape
 │   ├── job-validator.js        # Primitivă comună: validateByHead, validateByContent
-│   ├── company.json            # Cache ANAF (committed, TTL 7 zile, fallback la stale)
 │   ├── delete_request.json     # Payload SOLR delete (mentenanță)
 │   └── config/
 │       ├── company.json        # Sursa unică de adevăr (CIF, brand, URL-uri)

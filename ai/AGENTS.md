@@ -70,7 +70,7 @@ npm run test:consistency
 - `scraper/markdown-generator.js` — generates `docs/jobs.md` after each scrape; called from index.js
 - `scraper/job-validator.js` — shared `validateByHead` + `validateByContent` used by both validator CLIs
 - `scraper/demoanaf.js` — CLI wrapper around anaf.js
-- `scraper/company.js` — company validation (ANAF + Peviitor + SOLR); `scraper/company.json` is a 7-day ANAF cache, with stale fallback
+- `scraper/company.js` — company validation (ANAF + Peviitor + SOLR); reads from `scraper/config/company.json`, writes `scraper/anaf-cache.json` for offline fallback
 - `scraper/solr.js` — SOLR operations
 - `scraper/validate-jobs.js` — manual deep validator (content-aware); thin wrapper over job-validator.js
 - `scraper/delete_request.json` — SOLR delete payload (maintenance tool)
@@ -78,9 +78,10 @@ npm run test:consistency
 - `scraper/index.js` — main scraper orchestrator
 
 ### 8. Caching Behavior
-- `scraper/company.json` — committed ANAF cache, refreshed every 7 days (configurable via `CACHE_MAX_AGE_DAYS` in company.js)
-- If ANAF is unreachable AND cache is stale, the code falls back to the stale cache rather than failing the scrape
-- `docs/company.json` is regenerated on every scrape so GitHub Pages can read company identity
+- `scraper/config/company.json` — single source of truth; `lastScraped` updated on each run
+- `scraper/anaf-cache.json` — ANAF raw data for offline fallback (gitignored)
+- If ANAF is unreachable AND `lastScraped` exists, the code falls back to stale config rather than failing
+- `docs/company.json` is copied from config on every scrape for GitHub Pages (gitignored)
 
 ### 9. Auto-Heal Issues
 When the `Automation Tests` workflow fails, a **GitHub Issue** is auto-created with label `auto-heal`. The issue contains:

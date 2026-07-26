@@ -47,7 +47,6 @@ Proiectul automatizează colectarea zilnică a job-urilor MSG Systems din Român
 │   ├── anaf.js                 # ANAF API core module
 │   ├── markdown-generator.js   # Generates docs/jobs.md
 │   ├── job-validator.js        # Shared validateByHead + validateByContent
-│   ├── company.json            # ANAF cache (committed, 7-day TTL)
 │   ├── delete_request.json     # SOLR delete payload (maintenance)
 │   └── config/
 │       ├── company.json        # Single source of truth: CIF, brand, URLs

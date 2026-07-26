@@ -197,8 +197,8 @@ function isCacheFresh() {
 /**
  * Gets company data, preferring cache over live API calls.
  * CIF and brand are read from config/company.json.
- * Cache order: scraper/company-cache.json → scraper/company.json → ANAF live.
- * Stale cache is used as fallback if ANAF is unreachable.
+ * Cache order: config/company.json (lastScraped) → ANAF live.
+ * Stale config is used as fallback if ANAF is unreachable.
  * @returns {Promise<Object>} - Company data with company name, CIF, and active status
  */
 export async function getCompanyData() {

@@ -49,7 +49,7 @@ When working on this scraper:
 4. **Validate with Peviitor** - Verify company exists in Peviitor, get group/brand info
 5. **Check existing jobs in SOLR** - Query SOLR by CIF to see what jobs already exist
 6. **Check company status** - If ANAF status = "inactive" → DELETE existing jobs from SOLR and STOP
-7. **Save company.json** - Save all ANAF + Peviitor data for backup
+7. **Save ANAF cache** - Save raw ANAF data to `scraper/anaf-cache.json` for offline fallback
 8. **Scrape new jobs** - Extract jobs from MSG Systems careers page via HTML parsing (cheerio)
 9. **Transform for SOLR** - Validate and fix job data:
    - location: Only Romanian cities allowed
@@ -99,7 +99,7 @@ querySOLR(CIF) - just count, don't delete
     │
     ▼
 scraper/company.js (validate company)
-    ├── load cache (scraper/company.json)
+    ├── check config/company.json lastScraped
     │   └── if fresh (<7 days), skip ANAF entirely
     ├── ANAF API ──► get company name + CIF (only if cache stale/missing)
     ├── Peviitor API ──► validate company model
@@ -130,7 +130,7 @@ generateJobsMarkdown() → docs/jobs.md
 | `scraper/config/company.json` | **Single source of truth** for company identity (CIF, brand, URLs) |
 | `scraper/config/company.js` | ESM wrapper that loads `scraper/config/company.json` for Node code |
 | `scraper/index.js` | Main entry point - full workflow: validate company → scrape → transform → upsert → generate docs/jobs.md |
-| `scraper/company.js` | Validates company via ANAF + Peviitor; caches in `scraper/company.json` (7-day TTL) |
+| `scraper/company.js` | Validates company via ANAF + Peviitor; writes `scraper/anaf-cache.json` for offline fallback |
 | `scraper/solr.js` | SOLR operations module - query, delete, upsert jobs + standalone commands |
 | `scraper/validate-jobs.js` | Manual deep validator (content-aware); thin CLI wrapper over `scraper/job-validator.js` |
 | `scraper/anaf.js` | Company data module - ANAF (demoanaf.ro) + CUIScan (cuiscan.ro) fallback + CUIFirma search fallback. No retries — fast fail + fallback. |

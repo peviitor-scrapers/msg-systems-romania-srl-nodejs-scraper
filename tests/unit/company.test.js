@@ -7,8 +7,8 @@ jest.unstable_mockModule('node-fetch', () => ({
   default: mockFetch
 }));
 
-const COMPANY_JSON_PATH = 'scraper/company-cache.json';
-const ROOT_COMPANY_JSON_PATH = 'scraper/company.json';
+const COMPANY_JSON_PATH = 'scraper/anaf-cache.json';
+const ROOT_COMPANY_JSON_PATH = 'scraper/config/company.json';
 
 function backupFile(path) {
   if (fs.existsSync(path)) {
