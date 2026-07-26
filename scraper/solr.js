@@ -6,52 +6,31 @@
  * for the peviitor.ro job aggregation system.
  * 
  * This module handles:
- * - Querying jobs by company CIF (direct Solr)
+ * - Querying jobs by company CIF (via peviitor API)
  * - Querying/upserting company data (via peviitor API)
  * - Adding/updating (upserting) jobs (via peviitor API)
- * - Deleting jobs by CIF or URL (direct Solr)
+ * - Deleting jobs by CIF or URL (via peviitor API)
  * - URL validation and cleanup
  * 
+ * All Solr operations go through the peviitor API — no direct Solr access.
+ * 
  * Solr Cores:
- * - job: Stores individual job listings (via API for writes, direct for reads/deletes)
+ * - job: Stores individual job listings (via API)
  * - company: Stores company metadata (via API gateway)
  */
 
 import fetch from "node-fetch";
 import fs from "fs";
-import { loadEnvFile } from "node:process";
-
-try {
-  loadEnvFile(".env.local");
-} catch {
-  // .env.local may not exist in CI — SOLR_AUTH comes from GitHub Secrets
-}
 
 // ============================================================================
 // CONFIGURATION
 // ============================================================================
 
-// Solr core URLs (direct access for reads/deletes only)
-const SOLR_URL = "https://solr.peviitor.ro/solr/job";
-
-// Peviitor API base URL for company operations
+// Peviitor API base URL for all operations
 const API_BASE_URL = "https://api.peviitor.ro/v1";
 
 // HTTP request timeout in milliseconds
 const TIMEOUT = 10000;
-
-/**
- * Returns the SOLR_AUTH credential string ("user:password") from the environment,
- * throwing if it is missing. Used only for direct Solr core operations (reads/deletes).
- *
- * @returns {string} The SOLR_AUTH credential string
- * @throws {Error} If SOLR_AUTH is not set
- */
-export function getSolrAuth() {
-  const auth = process.env.SOLR_AUTH;
-  if (!auth) throw new Error("SOLR_AUTH not set in environment");
-  return auth;
-}
 
 // ============================================================================
 // COMPANY OPERATIONS - Via peviitor API
@@ -136,102 +115,92 @@ export async function upsertCompany(companyDoc) {
 }
 
 // ============================================================================
-// JOB OPERATIONS - Direct Solr (job core)
+// JOB OPERATIONS - Via peviitor API
 // ============================================================================
 
 /**
- * Queries jobs from Solr by company CIF
+ * Queries jobs from Solr by company CIF via the peviitor API
  * @param {string} cif - Company CIF/CUI to search for
- * @returns {Promise<Object>} - Solr response with numFound and docs array
+ * @returns {Promise<Object>} - { numFound, docs } normalized to match direct Solr format
  */
 export async function querySOLR(cif) {
-  const AUTH = getSolrAuth();
-
-  const params = new URLSearchParams({
-    q: `cif:${cif}`,
-    rows: 100,
-    wt: "json"
-  });
-
-  const res = await fetch(`${SOLR_URL}/select?${params}`, {
+  const url = `${API_BASE_URL}/scraper/jobs/?cif=${encodeURIComponent(cif)}&rows=500`;
+  const res = await fetch(url, {
     headers: {
-      "Authorization": "Basic " + Buffer.from(AUTH).toString("base64"),
       "User-Agent": "job_seeker_ro_spider"
     }
   });
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`SOLR query error: ${res.status} - ${text}`);
+    throw new Error(`API jobs query error: ${res.status} - ${text}`);
   }
 
   const data = await res.json();
-  return data.response;
+
+  return {
+    numFound: data.total ?? 0,
+    docs: data.data ?? []
+  };
 }
 
 // ============================================================================
-// DELETE OPERATIONS - Remove jobs from Solr (job core)
+// DELETE OPERATIONS - Via peviitor API
 // ============================================================================
 
 /**
- * Deletes all jobs for a company by CIF
+ * Deletes all jobs for a company by CIF via the peviitor API
  * Used when a company becomes inactive in ANAF
  * @param {string} cif - Company CIF to delete jobs for
  */
 export async function deleteJobsByCIF(cif) {
-  const AUTH = getSolrAuth();
-
-  const params = new URLSearchParams({ commit: "true" });
-
-  const deleteQuery = JSON.stringify({
-    delete: { query: `cif:${cif}` }
-  });
-
-  const res = await fetch(`${SOLR_URL}/update?${params}`, {
-    method: "POST",
+  const url = `${API_BASE_URL}/scraper/jobs/delete/`;
+  const res = await fetch(url, {
+    method: "DELETE",
     headers: {
-      "Authorization": "Basic " + Buffer.from(AUTH).toString("base64"),
       "Content-Type": "application/json",
       "User-Agent": "job_seeker_ro_spider"
     },
-    body: deleteQuery
+    body: JSON.stringify({ cif })
   });
+
+  if (res.status === 404) {
+    console.log(`⚠️ No jobs found for CIF ${cif} — nothing to delete.`);
+    return;
+  }
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`SOLR delete error: ${res.status} - ${text}`);
+    throw new Error(`API jobs delete error: ${res.status} - ${text}`);
   }
 
-  console.log("✅ Jobs deleted from SOLR.");
+  const data = await res.json();
+  console.log(`✅ Deleted ${data.count ?? 0} jobs for CIF ${cif} via API.`);
 }
 
 /**
- * Deletes a single job by its URL
+ * Deletes a single job by its URL via the peviitor API
  * Used when a job posting is no longer available
  * @param {string} url - Job URL to delete
  */
 export async function deleteJobByUrl(url) {
-  const AUTH = getSolrAuth();
-
-  const params = new URLSearchParams({ commit: "true" });
-
-  const deleteQuery = JSON.stringify({
-    delete: { query: `url:"${url}"` }
-  });
-
-  const res = await fetch(`${SOLR_URL}/update?${params}`, {
-    method: "POST",
+  const apiUrl = `${API_BASE_URL}/scraper/jobs/delete/`;
+  const res = await fetch(apiUrl, {
+    method: "DELETE",
     headers: {
-      "Authorization": "Basic " + Buffer.from(AUTH).toString("base64"),
       "Content-Type": "application/json",
       "User-Agent": "job_seeker_ro_spider"
     },
-    body: deleteQuery
+    body: JSON.stringify({ url })
   });
+
+  if (res.status === 404) {
+    return;
+  }
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(`SOLR delete error: ${res.status} - ${text}`);
+    throw new Error(`API jobs delete error: ${res.status} - ${text}`);
   }
 }
 
@@ -322,11 +291,11 @@ async function runVerification(cif) {
     }
 
     if (invalidUrls.length > 0) {
-      console.log(`\n⚠️ ${invalidUrls.length} invalid URLs found - deleting from SOLR...`);
+      console.log(`\n⚠️ ${invalidUrls.length} invalid URLs found - deleting via API...`);
       for (const url of invalidUrls) {
         await deleteJobByUrl(url);
       }
-      console.log(`✅ Deleted ${invalidUrls.length} invalid jobs from SOLR`);
+      console.log(`✅ Deleted ${invalidUrls.length} invalid jobs via API`);
     }
 
     if (invalidUrls.length === 0) {

@@ -6,10 +6,25 @@ jest.unstable_mockModule('node-fetch', () => ({
   default: mockFetch
 }));
 
-function makeSolrResponse(numFound, docs) {
+function makeApiJobsResponse(total, data) {
   return {
     ok: true,
-    json: async () => ({ response: { numFound, docs } })
+    json: async () => ({ success: true, total, count: data.length, data })
+  };
+}
+
+function makeApiDeleteResponse(count) {
+  return {
+    ok: true,
+    json: async () => ({ success: true, message: 'Jobs deleted successfully', count })
+  };
+}
+
+function makeApi404() {
+  return {
+    ok: false,
+    status: 404,
+    json: async () => ({ error: 'No jobs found', count: 0 })
   };
 }
 
@@ -17,7 +32,8 @@ function makeErrorResponse(status, text) {
   return {
     ok: false,
     status,
-    text: async () => text
+    text: async () => text,
+    json: async () => ({ error: text })
   };
 }
 
@@ -25,34 +41,16 @@ describe('solr.js', () => {
   let solr;
 
   beforeAll(async () => {
-    process.env.SOLR_AUTH = 'test:test';
     solr = await import('../../scraper/solr.js');
-  });
-
-  afterAll(() => {
-    delete process.env.SOLR_AUTH;
   });
 
   beforeEach(() => {
     mockFetch.mockReset();
   });
 
-  describe('getSolrAuth', () => {
-    it('should return SOLR_AUTH from environment', () => {
-      const auth = solr.getSolrAuth();
-      expect(auth).toBe('test:test');
-    });
-
-    it('should throw when not set', () => {
-      delete process.env.SOLR_AUTH;
-      expect(() => solr.getSolrAuth()).toThrow('SOLR_AUTH not set in environment');
-      process.env.SOLR_AUTH = 'test:test';
-    });
-  });
-
   describe('querySOLR', () => {
-    it('should return response object with docs', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(2, [
+    it('should return normalized response with numFound and docs', async () => {
+      mockFetch.mockResolvedValue(makeApiJobsResponse(2, [
         { id: 'job1', url: 'https://test.com/1', cif: '24415960' },
         { id: 'job2', url: 'https://test.com/2', cif: '24415960' }
       ]));
@@ -66,7 +64,7 @@ describe('solr.js', () => {
     });
 
     it('should return empty docs when no jobs found', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(0, []));
+      mockFetch.mockResolvedValue(makeApiJobsResponse(0, []));
 
       const result = await solr.querySOLR('99999999');
 
@@ -74,16 +72,23 @@ describe('solr.js', () => {
       expect(result.docs).toEqual([]);
     });
 
-    it('should throw when SOLR_AUTH is missing', async () => {
-      delete process.env.SOLR_AUTH;
-      await expect(solr.querySOLR('24415960')).rejects.toThrow('SOLR_AUTH not set in environment');
-      process.env.SOLR_AUTH = 'test:test';
-    });
-
     it('should throw on HTTP error', async () => {
       mockFetch.mockResolvedValue(makeErrorResponse(500, 'Internal Server Error'));
 
-      await expect(solr.querySOLR('24415960')).rejects.toThrow('SOLR query error: 500');
+      await expect(solr.querySOLR('24415960')).rejects.toThrow('API jobs query error: 500');
+    });
+
+    it('should call API endpoint with correct URL', async () => {
+      mockFetch.mockResolvedValue(makeApiJobsResponse(0, []));
+
+      await solr.querySOLR('24415960');
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        'https://api.peviitor.ro/v1/scraper/jobs/?cif=24415960&rows=500',
+        expect.objectContaining({
+          headers: { 'User-Agent': 'job_seeker_ro_spider' }
+        })
+      );
     });
   });
 
@@ -195,36 +200,64 @@ describe('solr.js', () => {
   });
 
   describe('deleteJobByUrl', () => {
-    it('should delete a job by URL', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(0, []));
+    it('should delete a job by URL via API', async () => {
+      mockFetch.mockResolvedValue(makeApiDeleteResponse(1));
 
       await expect(solr.deleteJobByUrl('https://test.com/old-job')).resolves.not.toThrow();
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        'https://api.peviitor.ro/v1/scraper/jobs/delete/',
+        expect.objectContaining({
+          method: 'DELETE',
+          body: JSON.stringify({ url: 'https://test.com/old-job' })
+        })
+      );
+    });
+
+    it('should handle 404 gracefully (no job found)', async () => {
+      mockFetch.mockResolvedValue(makeApi404());
+
+      await expect(solr.deleteJobByUrl('https://test.com/nonexistent')).resolves.not.toThrow();
     });
 
     it('should throw on HTTP error', async () => {
       mockFetch.mockResolvedValue(makeErrorResponse(500, 'Error'));
 
-      await expect(solr.deleteJobByUrl('https://test.com/bad')).rejects.toThrow('SOLR delete error: 500');
+      await expect(solr.deleteJobByUrl('https://test.com/bad')).rejects.toThrow('API jobs delete error: 500');
     });
   });
 
   describe('deleteJobsByCIF', () => {
-    it('should delete all jobs for a CIF', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(0, []));
+    it('should delete all jobs for a CIF via API', async () => {
+      mockFetch.mockResolvedValue(makeApiDeleteResponse(32));
 
       await expect(solr.deleteJobsByCIF('24415960')).resolves.not.toThrow();
+
+      expect(mockFetch).toHaveBeenCalledWith(
+        'https://api.peviitor.ro/v1/scraper/jobs/delete/',
+        expect.objectContaining({
+          method: 'DELETE',
+          body: JSON.stringify({ cif: '24415960' })
+        })
+      );
+    });
+
+    it('should handle 404 gracefully (no jobs found)', async () => {
+      mockFetch.mockResolvedValue(makeApi404());
+
+      await expect(solr.deleteJobsByCIF('99999999')).resolves.not.toThrow();
     });
 
     it('should throw on HTTP error', async () => {
       mockFetch.mockResolvedValue(makeErrorResponse(500, 'Error'));
 
-      await expect(solr.deleteJobsByCIF('24415960')).rejects.toThrow('SOLR delete error: 500');
+      await expect(solr.deleteJobsByCIF('24415960')).rejects.toThrow('API jobs delete error: 500');
     });
   });
 
   describe('Data Integrity', () => {
     it('should not have duplicate URLs for same CIF', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(2, [
+      mockFetch.mockResolvedValue(makeApiJobsResponse(2, [
         { url: 'https://test.com/job1', title: 'Job 1', cif: '24415960' },
         { url: 'https://test.com/job2', title: 'Job 2', cif: '24415960' }
       ]));
@@ -237,7 +270,7 @@ describe('solr.js', () => {
     });
 
     it('should have valid CIF format for all jobs', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(2, [
+      mockFetch.mockResolvedValue(makeApiJobsResponse(2, [
         { url: 'https://test.com/1', title: 'Job 1', cif: '24415960' },
         { url: 'https://test.com/2', title: 'Job 2', cif: '12345678' }
       ]));
@@ -250,7 +283,7 @@ describe('solr.js', () => {
     });
 
     it('should detect invalid CIF format', async () => {
-      mockFetch.mockResolvedValue(makeSolrResponse(1, [
+      mockFetch.mockResolvedValue(makeApiJobsResponse(1, [
         { url: 'https://test.com/1', title: 'Job 1', cif: 'abc' }
       ]));
 
@@ -264,7 +297,7 @@ describe('solr.js', () => {
     it('should have valid status values', async () => {
       const validStatuses = ['scraped', 'tested', 'verified', 'published'];
 
-      mockFetch.mockResolvedValue(makeSolrResponse(3, [
+      mockFetch.mockResolvedValue(makeApiJobsResponse(3, [
         { url: 'https://test.com/1', title: 'Job 1', cif: '24415960', status: 'scraped' },
         { url: 'https://test.com/2', title: 'Job 2', cif: '24415960', status: 'verified' },
         { url: 'https://test.com/3', title: 'Job 3', cif: '24415960', status: 'published' }
