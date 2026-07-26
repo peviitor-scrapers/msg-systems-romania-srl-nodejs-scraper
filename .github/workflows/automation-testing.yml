@@ -93,11 +93,11 @@ jobs:
         run: |
           # Build Solr document directly from config/company.json (Company Model Schema)
           TODAY=$(date -u +%Y-%m-%d)
-          BRAND=$(jq -r '.brand' config/company.json)
-          CIF=$(jq -r '.id' config/company.json)
+          BRAND=$(jq -r '.brand' scraper/config/company.json)
+          CIF=$(jq -r '.id' scraper/config/company.json)
 
           jq -n \
-            --slurpfile company config/company.json \
+            --slurpfile company scraper/config/company.json \
             --arg today "$TODAY" \
             '{
               id:            $company[0].id,

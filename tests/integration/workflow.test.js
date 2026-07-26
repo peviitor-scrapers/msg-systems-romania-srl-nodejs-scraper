@@ -45,7 +45,7 @@ beforeAll(async () => {
   if (HAS_SOLR) {
     process.env.SOLR_AUTH = process.env.SOLR_AUTH;
   }
-  const mod = await import('../../config/company.js');
+  const mod = await import('../../scraper/config/company.js');
   COMPANY_CONFIG = mod.default;
 });
 
@@ -55,7 +55,7 @@ describe('Integration: API Workflow', () => {
     let anaf;
 
     beforeAll(async () => {
-      anaf = await import('../../src/anaf.js');
+      anaf = await import('../../scraper/anaf.js');
     });
 
     itIfAnaf('should search for MSG Systems brand and find the company', async () => {
@@ -109,7 +109,7 @@ describe('Integration: API Workflow', () => {
     let company;
 
     beforeAll(async () => {
-      company = await import('../../company.js');
+      company = await import('../../scraper/company.js');
     });
 
     it('should respond successfully and contain companies array (Peviitor API may block non-browser requests)', async () => {
@@ -122,7 +122,7 @@ describe('Integration: API Workflow', () => {
     let solr;
 
     beforeAll(async () => {
-      solr = await import('../../solr.js');
+      solr = await import('../../scraper/solr.js');
     });
 
     itIfSolr('should query company core by ID', async () => {
@@ -168,7 +168,7 @@ describe('Integration: API Workflow', () => {
     let solr;
 
     beforeAll(async () => {
-      solr = await import('../../solr.js');
+      solr = await import('../../scraper/solr.js');
     });
 
     itIfSolr('should query jobs by CIF and return valid data', async () => {
@@ -223,9 +223,9 @@ describe('Integration: API Workflow', () => {
     let solr;
 
     beforeAll(async () => {
-      anaf = await import('../../src/anaf.js');
-      companyModule = await import('../../company.js');
-      solr = await import('../../solr.js');
+      anaf = await import('../../scraper/anaf.js');
+      companyModule = await import('../../scraper/company.js');
+      solr = await import('../../scraper/solr.js');
     });
 
     itIfAnaf('should complete the ANAF → Peviitor validation path', async () => {

@@ -20,9 +20,8 @@ Before starting any `gh run watch` or polling loop in the background, sanity-che
 
 If you spawn a stuck task, kill it immediately rather than letting it hang.
 
-### 1. Temporary Files
-All temporary/scratch files MUST go in `tmp/` inside the project root.
-NEVER use paths outside the project (e.g. `C:\Users\...\AppData\Local\Temp\opencode`).
+### 1. Temporary Files — NO TMP FOLDER
+**NU folosi `tmp/` niciodată.** Toate fișierele temporare/scratch trebuie scrise în folderul `scraper/` sau în subfolderele lui. Nu crea directoare separate temporare.
 
 ### 2. Issues & GitHub
 - **Orice modificare de cod trebuie să aibă un issue în GitHub Issues** (vezi [ISSUES.md](ISSUES.md))
@@ -66,20 +65,20 @@ npm run test:consistency
 - Toate workflow-urile din `.github/workflows/` trebuie să treacă înainte de merge
 
 ### 7. Module Structure
-- `config/company.json` + `config/company.js` — single source of truth for company identity
-- `src/anaf.js` — company data module (imported by company.js); ANAF + CUIScan fallback + CUIFirma search fallback. No retries.
-- `src/markdown-generator.js` — generates `docs/jobs.md` after each scrape; called from index.js
-- `src/job-validator.js` — shared `validateByHead` + `validateByContent` used by both validator CLIs
-- `demoanaf.js` — CLI wrapper around src/anaf.js
-- `company.js` — company validation (ANAF + Peviitor + SOLR); root `company.json` is a 7-day ANAF cache committed to repo, with stale fallback
-- `solr.js` — SOLR operations
-- `validate-jobs.js` — manual deep validator (content-aware); thin wrapper over src/job-validator.js
-- `tests/validate-msg-jobs.js` — CI fast validator (HEAD only); thin wrapper over src/job-validator.js + solr.js
-- `index.js` — main scraper orchestrator
+- `scraper/config/company.json` + `scraper/config/company.js` — single source of truth for company identity
+- `scraper/anaf.js` — company data module (imported by company.js); ANAF + CUIScan fallback + CUIFirma search fallback. No retries.
+- `scraper/markdown-generator.js` — generates `docs/jobs.md` after each scrape; called from index.js
+- `scraper/job-validator.js` — shared `validateByHead` + `validateByContent` used by both validator CLIs
+- `scraper/demoanaf.js` — CLI wrapper around anaf.js
+- `scraper/company.js` — company validation (ANAF + Peviitor + SOLR); `scraper/company.json` is a 7-day ANAF cache, with stale fallback
+- `scraper/solr.js` — SOLR operations
+- `scraper/validate-jobs.js` — manual deep validator (content-aware); thin wrapper over job-validator.js
+- `scraper/delete_request.json` — SOLR delete payload (maintenance tool)
+- `tests/validate-msg-jobs.js` — CI fast validator (HEAD only); thin wrapper over job-validator.js + solr.js
+- `scraper/index.js` — main scraper orchestrator
 
 ### 8. Caching Behavior
-- `tmp/company.json` — per-run scratch cache (gitignored)
-- `company.json` (root) — committed cache, refreshed every 7 days (configurable via `CACHE_MAX_AGE_DAYS` in company.js)
+- `scraper/company.json` — committed ANAF cache, refreshed every 7 days (configurable via `CACHE_MAX_AGE_DAYS` in company.js)
 - If ANAF is unreachable AND cache is stale, the code falls back to the stale cache rather than failing the scrape
 - `docs/company.json` is regenerated on every scrape so GitHub Pages can read company identity
 

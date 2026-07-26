@@ -11,7 +11,7 @@
  * the standalone CLI interface.
  */
 
-import { getCompanyFromANAF, searchCompany } from "./src/anaf.js";
+import { getCompanyFromANAF, searchCompany } from "./anaf.js";
 import companyConfig from "./config/company.js";
 
 const args = process.argv.slice(2);

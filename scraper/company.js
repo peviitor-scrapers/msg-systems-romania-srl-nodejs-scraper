@@ -9,7 +9,7 @@
 import fetch from "node-fetch";
 import fs from "fs";
 import { querySOLR, deleteJobsByCIF } from "./solr.js";
-import { getCompanyFromANAF } from "./src/anaf.js";
+import { getCompanyFromANAF } from "./anaf.js";
 import companyConfig from "./config/company.js";
 
 // ============================================================================
@@ -26,7 +26,7 @@ const COMPANY_BRAND = companyConfig.brand || null;
 const CACHE_MAX_AGE_DAYS = 7;
 
 // Root cache file (committed to repo, survives between CI runs)
-const ROOT_CACHE_PATH = "company.json";
+const ROOT_CACHE_PATH = "scraper/company.json";
 // Local tmp cache (per-run, gitignored)
 const TMP_CACHE_PATH = "tmp/company.json";
 

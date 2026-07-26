@@ -20,7 +20,7 @@
  */
 
 import fs from "fs";
-import { validateByContent } from "./src/job-validator.js";
+import { validateByContent } from "./job-validator.js";
 
 async function checkUrls(urls) {
   console.log(`=== Validating ${urls.length} URLs ===\n`);

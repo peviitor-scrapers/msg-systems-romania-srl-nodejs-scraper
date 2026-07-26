@@ -26,7 +26,7 @@ describe('solr.js', () => {
 
   beforeAll(async () => {
     process.env.SOLR_AUTH = 'test:test';
-    solr = await import('../../solr.js');
+    solr = await import('../../scraper/solr.js');
   });
 
   afterAll(() => {

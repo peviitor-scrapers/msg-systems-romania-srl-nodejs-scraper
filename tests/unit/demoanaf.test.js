@@ -73,7 +73,7 @@ describe('src/anaf.js', () => {
   let anaf;
 
   beforeAll(async () => {
-    anaf = await import('../../src/anaf.js');
+    anaf = await import('../../scraper/anaf.js');
   });
 
   beforeEach(() => {

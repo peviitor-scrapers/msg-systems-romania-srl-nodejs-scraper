@@ -8,7 +8,7 @@ jest.unstable_mockModule('node-fetch', () => ({
 }));
 
 const COMPANY_JSON_PATH = 'tmp/company.json';
-const ROOT_COMPANY_JSON_PATH = 'company.json';
+const ROOT_COMPANY_JSON_PATH = 'scraper/company.json';
 
 function backupFile(path) {
   if (fs.existsSync(path)) {
@@ -68,7 +68,7 @@ describe('company.js', () => {
     fs.mkdirSync("tmp", { recursive: true });
     backupFile(COMPANY_JSON_PATH);
     backupFile(ROOT_COMPANY_JSON_PATH);
-    company = await import('../../company.js');
+    company = await import('../../scraper/company.js');
   });
 
   afterAll(() => {

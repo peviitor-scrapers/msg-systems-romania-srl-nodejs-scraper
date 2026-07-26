@@ -80,7 +80,7 @@ describe('E2E: Full Scraping Pipeline', () => {
     let html;
 
     beforeAll(async () => {
-      index = await import('../../index.js');
+      index = await import('../../scraper/index.js');
       const res = await fetch(MSG_LISTING_URL, {
         headers: {
           'User-Agent': 'job_seeker_ro_spider',
@@ -174,8 +174,8 @@ describe('E2E: Full Scraping Pipeline', () => {
     let company;
 
     beforeAll(async () => {
-      anaf = await import('../../src/anaf.js');
-      company = await import('../../company.js');
+      anaf = await import('../../scraper/anaf.js');
+      company = await import('../../scraper/company.js');
     });
 
     itIfAnaf('should find MSG Systems in ANAF and validate active status', async () => {
@@ -212,7 +212,7 @@ describe('E2E: Full Scraping Pipeline', () => {
     let anaf;
 
     beforeAll(async () => {
-      anaf = await import('../../src/anaf.js');
+      anaf = await import('../../scraper/anaf.js');
     });
 
     itIfAnaf('should detect inactive/radiated companies via ANAF', async () => {
@@ -238,7 +238,7 @@ describe('E2E: Full Scraping Pipeline', () => {
     let solr;
 
     beforeAll(async () => {
-      solr = await import('../../solr.js');
+      solr = await import('../../scraper/solr.js');
     });
 
     itIfSolr('should have MSG jobs in SOLR with correct company name', async () => {
