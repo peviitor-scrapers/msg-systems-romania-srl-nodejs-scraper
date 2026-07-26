@@ -53,7 +53,7 @@ function parseMsgJobs(html) {
       if (html.includes("<br>")) {
         const parts = html.split(/<br\s*\/?>/i);
         for (const part of parts) {
-          const partText = $(part).text().trim();
+          const partText = cheerio.load(part).text().trim();
           if (partText.includes("\uD83D\uDCCD")) {
             const locRaw = partText.replace("\uD83D\uDCCD", "").trim();
             location = locRaw.split(",").map((s) => s.trim()).filter(Boolean);
