@@ -44,6 +44,10 @@ company_data.json
 delete.json
 epam_response.json
 
+# Generated company files (single source: scraper/config/company.json)
+docs/company.json
+scraper/anaf-cache.json
+
 # Credentials (NEVER commit these)
 *.pem
 *.key

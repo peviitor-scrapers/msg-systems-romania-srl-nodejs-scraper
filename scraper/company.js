@@ -25,10 +25,8 @@ const COMPANY_BRAND = companyConfig.brand || null;
 // Cache TTL — re-fetch from ANAF if cached data is older than this
 const CACHE_MAX_AGE_DAYS = 7;
 
-// Root cache file (committed to repo, survives between CI runs)
-const ROOT_CACHE_PATH = "scraper/company.json";
-// Local tmp cache (per-run, gitignored)
-const TMP_CACHE_PATH = "scraper/company-cache.json";
+// ANAF raw data cache (per-run, for offline fallback)
+const ANAF_CACHE_PATH = "scraper/anaf-cache.json";
 
 // ============================================================================
 // COMPANY MODEL - Defines the expected schema for company data
@@ -145,90 +143,51 @@ function validateCompanyModel(data) {
 // ============================================================================
 
 /**
- * Saves company data to company.json for caching
- * This allows the scraper to work offline when ANAF API is unavailable
+ * Saves ANAF raw data for offline fallback.
+ * Updates lastScraped in config/company.json (the single source of truth).
  * @param {Object} anafData - Company data from ANAF
  * @param {Object} peviitorData - Company data from Peviitor (optional)
- * @returns {Object} - The saved company data object
  */
 function saveCompanyData(anafData, peviitorData) {
-  const companyData = {
-    // Metadata
+  // Save ANAF raw data for offline fallback
+  const anafCache = {
     validatedAt: new Date().toISOString(),
-    source: "ANAF",
-    
-    // Raw data from sources
     anaf: anafData,
-    peviitor: peviitorData,
-    
-    // Summary with extracted key fields
-    summary: {
-      company: anafData?.name || null,
-      cif: anafData?.cui?.toString() || null,
-      active: !anafData?.inactive,
-      inactiveSince: anafData?.inactiveSince || null,
-      reactivatedSince: anafData?.reactivatedSince || null,
-      address: anafData?.address || null,
-      registrationNumber: anafData?.registrationNumber || null,
-      caenCode: anafData?.caenCode || null,
-      vatRegistered: anafData?.vatRegistered || false,
-      eFacturaRegistered: anafData?.eFacturaRegistered || false
-    }
+    peviitor: peviitorData
   };
-  
-  const json = JSON.stringify(companyData, null, 2);
-
-  // Always write tmp cache (per-run scratch)
   fs.mkdirSync("scraper", { recursive: true });
-  fs.writeFileSync(TMP_CACHE_PATH, json, "utf-8");
-  console.log(`\n✅ Saved company data to ${TMP_CACHE_PATH}`);
+  fs.writeFileSync(ANAF_CACHE_PATH, JSON.stringify(anafCache, null, 2), "utf-8");
+  console.log(`✅ Saved ANAF cache to ${ANAF_CACHE_PATH}`);
 
-  // Also update root cache (committed to repo, survives between CI runs)
-  fs.writeFileSync(ROOT_CACHE_PATH, json, "utf-8");
-  console.log(`✅ Updated root cache ${ROOT_CACHE_PATH}\n`);
-
-  return companyData;
+  // Update lastScraped in config/company.json (single source of truth)
+  const configPath = "scraper/config/company.json";
+  const config = JSON.parse(fs.readFileSync(configPath, "utf-8"));
+  config.lastScraped = new Date().toISOString().split("T")[0];
+  fs.writeFileSync(configPath, JSON.stringify(config, null, 2), "utf-8");
+  console.log(`✅ Updated lastScraped in ${configPath}`);
 }
 
 /**
- * Validates that cached data has the required ANAF fields.
+ * Loads ANAF raw cache for offline fallback.
  */
-function isValidCache(data) {
-  return Boolean(data?.anaf?.cui && data?.anaf?.name);
+function loadAnafCache() {
+  if (!fs.existsSync(ANAF_CACHE_PATH)) return null;
+  try {
+    return JSON.parse(fs.readFileSync(ANAF_CACHE_PATH, "utf-8"));
+  } catch (e) {
+    console.log(`Warning: Could not parse ${ANAF_CACHE_PATH}`);
+    return null;
+  }
 }
 
 /**
- * Checks whether the cache is still fresh (within CACHE_MAX_AGE_DAYS).
+ * Checks whether the config lastScraped is still fresh (within CACHE_MAX_AGE_DAYS).
  */
-function isCacheFresh(data) {
-  if (!data?.validatedAt) return false;
-  const ageMs = Date.now() - new Date(data.validatedAt).getTime();
+function isCacheFresh() {
+  if (!companyConfig.lastScraped) return false;
+  const ageMs = Date.now() - new Date(companyConfig.lastScraped).getTime();
   const ageDays = ageMs / (1000 * 60 * 60 * 24);
   return ageDays < CACHE_MAX_AGE_DAYS;
-}
-
-/**
- * Loads cached company data, checking scraper/company-cache.json first (fresh per-run), then scraper/company.json (committed backup).
- * Returns the cache if valid AND fresh. Returns null if stale or missing.
- * Returns `{ ...data, _stale: true }` if found but stale — caller may still use as fallback.
- */
-function loadCachedCompanyData() {
-  for (const cachePath of [TMP_CACHE_PATH, ROOT_CACHE_PATH]) {
-    if (!fs.existsSync(cachePath)) continue;
-    try {
-      const data = JSON.parse(fs.readFileSync(cachePath, "utf-8"));
-      if (!isValidCache(data)) continue;
-      if (isCacheFresh(data)) {
-        console.log(`Found fresh cached company data in ${cachePath}`);
-        return data;
-      }
-      console.log(`Found stale cached company data in ${cachePath} (older than ${CACHE_MAX_AGE_DAYS} days)`);
-      return { ...data, _stale: true };
-    } catch (e) {
-      console.log(`Warning: Could not parse ${cachePath}`);
-    }
-  }
-  return null;
 }
 
 // ============================================================================
@@ -243,20 +202,19 @@ function loadCachedCompanyData() {
  * @returns {Promise<Object>} - Company data with company name, CIF, and active status
  */
 export async function getCompanyData() {
-  const cachedData = loadCachedCompanyData();
-
   // Fresh cache → use it, skip ANAF
-  if (cachedData && !cachedData._stale && cachedData.summary?.cif) {
-    console.log(`Using cached company data for CIF: ${cachedData.summary.cif}`);
-    const anafData = cachedData.anaf;
+  if (isCacheFresh() && companyConfig.id) {
+    console.log(`Using cached company data for CIF: ${companyConfig.id}`);
+    console.log(`Cached name: ${companyConfig.company}`);
+    console.log(`Cached status: ${companyConfig.status}`);
 
-    console.log(`Cached name: ${anafData.name}`);
-    console.log(`Cached CUI: ${anafData.cui}`);
-    console.log(`Cached status: ${anafData.inactive ? "INACTIVE" : "ACTIVE"}`);
+    const company = companyConfig.company.toUpperCase();
+    const cif = companyConfig.id;
+    const active = companyConfig.status === "activ";
 
-    const company = anafData.name.toUpperCase();
-    const cif = anafData.cui.toString();
-    const active = !anafData.inactive;
+    // Load raw ANAF data for fallback
+    const anafCache = loadAnafCache();
+    const anafData = anafCache?.anaf || null;
 
     return { company, cif, active, anafData };
   }
@@ -267,14 +225,13 @@ export async function getCompanyData() {
   try {
     anafData = await getCompanyFromANAF(COMPANY_ID);
   } catch (err) {
-    if (cachedData?._stale) {
-      console.log(`⚠️ ANAF unreachable (${err.message}) — falling back to stale cache`);
-      const a = cachedData.anaf;
+    if (companyConfig.lastScraped) {
+      console.log(`⚠️ ANAF unreachable (${err.message}) — falling back to stale config`);
       return {
-        company: a.name.toUpperCase(),
-        cif: a.cui.toString(),
-        active: !a.inactive,
-        anafData: a
+        company: companyConfig.company.toUpperCase(),
+        cif: companyConfig.id,
+        active: companyConfig.status === "activ",
+        anafData: null
       };
     }
     throw err;
