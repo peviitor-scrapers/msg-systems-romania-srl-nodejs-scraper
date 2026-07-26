@@ -66,8 +66,22 @@ describe('company.js', () => {
   beforeAll(async () => {
     process.env.SOLR_AUTH = 'test:test';
     fs.mkdirSync("scraper", { recursive: true });
+    fs.mkdirSync("scraper/config", { recursive: true });
     backupFile(COMPANY_JSON_PATH);
     backupFile(ROOT_COMPANY_JSON_PATH);
+    if (!fs.existsSync(ROOT_COMPANY_JSON_PATH)) {
+      fs.writeFileSync(ROOT_COMPANY_JSON_PATH, JSON.stringify({
+        id: "24415960",
+        company: "MSG SYSTEMS ROMÂNIA SRL",
+        brand: ".msg",
+        status: "activ",
+        location: ["Cluj-Napoca"],
+        website: ["https://www.msg-systems.ro"],
+        career: ["https://www.msg-systems.ro/en/careers/job-offerings/"],
+        lastScraped: "2026-01-01",
+        scraperFile: "https://github.com/sebiboga/msg-systems-romania-srl-nodejs-scraper/actions/workflows/job-seeker-ro-spider.yml"
+      }), 'utf-8');
+    }
     company = await import('../../scraper/company.js');
   });
 

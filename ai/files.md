@@ -12,6 +12,7 @@
 | `scraper/anaf.js` | ANAF API core module - exports getCompanyFromANAF(cif), getCompanyFromANAFWithFallback(cif, cached), searchCompany(brandName) |
 | `scraper/markdown-generator.js` | Generates docs/jobs.md - exports generateJobsMarkdown(companyData, jobs) |
 | `scraper/job-validator.js` | Shared validation primitives - exports validateByHead(url), validateByContent(url, opts), DEFAULT_EXPIRED_KEYWORDS. Used by both `validate-jobs.js` and `tests/validate-msg-jobs.js`. |
+| `scraper/student-programs.js` | Scrapes student programs from /en/careers/student-programs/ — exports getStudentPrograms(). Extracts internships (Java Training, Python Training, SAP Summer School). Integrated into main scraper workflow. |
 
 ## Config — scraper/config/
 

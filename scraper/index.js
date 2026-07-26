@@ -6,6 +6,7 @@ import { validateAndGetCompany } from "./company.js";
 import { querySOLR, upsertJobs, upsertCompany } from "./solr.js";
 import { generateJobsMarkdown } from "./markdown-generator.js";
 import companyConfig from "./config/company.js";
+import { getStudentPrograms } from "./student-programs.js";
 
 const COMPANY_ID = companyConfig.id;
 
@@ -46,8 +47,21 @@ function parseMsgJobs(html) {
     let location = [];
 
     paragraphs.each((_, pEl) => {
+      const html = $(pEl).html() || "";
       const text = $(pEl).text().trim();
-      if (text.includes("\uD83D\uDCCD")) {
+
+      if (html.includes("<br>")) {
+        const parts = html.split(/<br\s*\/?>/i);
+        for (const part of parts) {
+          const partText = $(part).text().trim();
+          if (partText.includes("\uD83D\uDCCD")) {
+            const locRaw = partText.replace("\uD83D\uDCCD", "").trim();
+            location = locRaw.split(",").map((s) => s.trim()).filter(Boolean);
+          } else if (partText && !$(pEl).hasClass("button")) {
+            if (!category) category = partText;
+          }
+        }
+      } else if (text.includes("\uD83D\uDCCD")) {
         const locRaw = text.replace("\uD83D\uDCCD", "").trim();
         location = locRaw.split(",").map((s) => s.trim()).filter(Boolean);
       } else if (text && !$(pEl).hasClass("button")) {
@@ -248,6 +262,28 @@ async function main() {
 
     console.log("\n=== Step 4: Upsert jobs to SOLR ===");
     await upsertJobs(transformedPayload.jobs);
+
+    console.log("\n=== Step 5: Scrape student programs ===");
+    try {
+      const programs = await getStudentPrograms();
+      if (programs.length > 0) {
+        const programJobs = programs.map(p => ({
+          url: p.applyLink || LISTING_URL,
+          title: p.title,
+          company: COMPANY_NAME,
+          cif: localCif,
+          location: p.location.length > 0 ? p.location : ['România'],
+          tags: ['student', 'internship'],
+          workmode: 'on-site',
+          date: new Date().toISOString(),
+          status: 'scraped'
+        }));
+        await upsertJobs(programJobs);
+        console.log(`Upserted ${programJobs.length} student programs to SOLR`);
+      }
+    } catch (err) {
+      console.log(`Note: Student programs scraping failed: ${err.message}`);
+    }
 
     const finalResult = await querySOLR(COMPANY_ID);
     console.log(`\n=== SUMMARY ===`);

@@ -24,6 +24,7 @@ Proiectul automatizează colectarea zilnică a job-urilor MSG Systems din Român
 ## Features
 
 - Extrage job-uri prin HTML scraping (cheerio) de pe pagina de cariere MSG Systems
+- Extrage programe studențești (internships) de pe pagina student programs
 - Validează compania via ANAF (CUI, status activ/inactiv, adresă completă)
 - **Cache ANAF la 7 zile** — committed în repo, nu lovește demoANAF la fiecare scrape
 - **Fallback la cache stale** dacă ANAF e indisponibil

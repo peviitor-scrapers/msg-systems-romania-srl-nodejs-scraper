@@ -69,6 +69,7 @@ npm run test:consistency
 - `scraper/anaf.js` — company data module (imported by company.js); ANAF + CUIScan fallback + CUIFirma search fallback. No retries.
 - `scraper/markdown-generator.js` — generates `docs/jobs.md` after each scrape; called from index.js
 - `scraper/job-validator.js` — shared `validateByHead` + `validateByContent` used by both validator CLIs
+- `scraper/student-programs.js` — scrapes student programs (internships) from /en/careers/student-programs/; integrated into main scraper
 - `scraper/demoanaf.js` — CLI wrapper around anaf.js
 - `scraper/company.js` — company validation (ANAF + Peviitor + SOLR); reads from `scraper/config/company.json`, writes `scraper/anaf-cache.json` for offline fallback
 - `scraper/solr.js` — SOLR operations
