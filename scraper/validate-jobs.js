@@ -61,7 +61,7 @@ async function checkUrls(urls) {
 async function validateJobs(cif) {
   console.log("=== Validate Job URLs from Solr ===\n");
   
-  const { querySOLR } = await import("./solr.js");
+  const { querySOLR } = await import("./api.js");
   const result = await querySOLR(cif);
   const urls = result.docs.map(doc => doc.url);
   
@@ -90,7 +90,7 @@ async function loadUrlsFromFile(filePath) {
 }
 
 async function deleteExpiredJobs(expiredJobs) {
-  const { deleteJobByUrl } = await import("./solr.js");
+  const { deleteJobByUrl } = await import("./api.js");
   
   console.log(`\nDeleting ${expiredJobs.length} expired jobs from SOLR...`);
   

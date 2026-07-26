@@ -370,23 +370,23 @@ async function runCompanyQuery(args) {
 }
 
 // ============================================================================
-// STANDALONE MODE - Run solr.js directly for maintenance tasks
+// STANDALONE MODE - Run api.js directly for maintenance tasks
 // ============================================================================
 
 /**
  * Usage:
- *   node solr.js <CIF>              - Verify jobs for a company
- *   node solr.js extract <CIF>      - Extract jobs to backup file
- *   node solr.js company            - Query companies via API
- *   node solr.js company <name>     - Search companies by name
+ *   node api.js <CIF>              - Verify jobs for a company
+ *   node api.js extract <CIF>      - Extract jobs to backup file
+ *   node api.js company            - Query companies via API
+ *   node api.js company <name>     - Search companies by name
  */
-if (import.meta.url === `file://${process.argv[1]}` || process.argv[1]?.endsWith("solr.js")) {
+if (import.meta.url === `file://${process.argv[1]}` || process.argv[1]?.endsWith("api.js")) {
   const args = process.argv.slice(2);
   
   if (args.includes("extract")) {
     const cif = args[1] || null;
     if (!cif) {
-      console.error("Error: CIF required. Usage: node solr.js extract <CIF>");
+      console.error("Error: CIF required. Usage: node api.js extract <CIF>");
       process.exit(1);
     }
     await runExtract(cif);
@@ -395,7 +395,7 @@ if (import.meta.url === `file://${process.argv[1]}` || process.argv[1]?.endsWith
   } else {
     const cif = args[0] || null;
     if (!cif) {
-      console.error("Error: CIF required. Usage: node solr.js <CIF>");
+      console.error("Error: CIF required. Usage: node api.js <CIF>");
       process.exit(1);
     }
     await runVerification(cif);

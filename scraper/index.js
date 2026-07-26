@@ -3,7 +3,7 @@ import * as cheerio from "cheerio";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import { validateAndGetCompany } from "./company.js";
-import { querySOLR, upsertJobs, upsertCompany } from "./solr.js";
+import { querySOLR, upsertJobs, upsertCompany } from "./api.js";
 import { generateJobsMarkdown } from "./markdown-generator.js";
 import companyConfig from "./config/company.js";
 import { getStudentPrograms } from "./student-programs.js";

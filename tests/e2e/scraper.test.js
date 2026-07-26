@@ -1,19 +1,19 @@
 import { jest } from '@jest/globals';
-import dotenv from 'dotenv';
-import path from 'path';
-import { fileURLToPath } from 'url';
 import fetch from 'node-fetch';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
+const API_BASE = 'https://api.peviitor.ro/v1';
 
-const HAS_SOLR = !!process.env.SOLR_AUTH;
+let HAS_API = false;
 
-function itIfSolr(name, fn, timeout) {
-  if (HAS_SOLR) {
-    return it(name, fn, timeout);
+async function checkApiAvailability() {
+  try {
+    const res = await fetch(`${API_BASE}/scraper/jobs/?cif=24415960&rows=1`, {
+      signal: AbortSignal.timeout(5000)
+    });
+    return res.ok || res.status === 400;
+  } catch {
+    return false;
   }
-  return it.skip(`${name} (skipped: SOLR_AUTH not set)`, fn, timeout);
 }
 
 let HAS_ANAF = false;
@@ -30,6 +30,13 @@ async function checkAnafAvailability() {
   }
 }
 
+function itIfApi(name, fn, timeout) {
+  if (HAS_API) {
+    return it(name, fn, timeout);
+  }
+  return it.skip(`${name} (skipped: API unavailable)`, fn, timeout);
+}
+
 function itIfAnaf(name, fn, timeout) {
   if (HAS_ANAF) {
     return it(name, fn, timeout);
@@ -38,10 +45,7 @@ function itIfAnaf(name, fn, timeout) {
 }
 
 beforeAll(async () => {
-  HAS_ANAF = await checkAnafAvailability();
-  if (HAS_SOLR) {
-    process.env.SOLR_AUTH = process.env.SOLR_AUTH;
-  }
+  [HAS_API, HAS_ANAF] = await Promise.all([checkApiAvailability(), checkAnafAvailability()]);
 });
 
 const TEST_CIF = '24415960';
@@ -193,7 +197,7 @@ describe('E2E: Full Scraping Pipeline', () => {
       expect(anafData.inactive).toBe(false);
     }, 30000);
 
-    itIfSolr('should run full validation and report active status with job count', async () => {
+    itIfApi('should run full validation and report active status with job count', async () => {
       const result = await company.validateAndGetCompany();
 
       expect(result.status).toBe('active');
@@ -201,7 +205,7 @@ describe('E2E: Full Scraping Pipeline', () => {
       expect(result.cif).toBe(TEST_CIF);
 
       if (result.existingJobsCount === 0) {
-        console.log('⚠️ No MSG jobs in Solr — skipping job count assertion');
+        console.log('⚠️ No MSG jobs in SOLR — skipping job count assertion');
         return;
       }
       expect(result.existingJobsCount).toBeGreaterThan(0);
@@ -234,18 +238,18 @@ describe('E2E: Full Scraping Pipeline', () => {
     }, 30000);
   });
 
-  describe('SOLR Data Verification', () => {
-    let solr;
+  describe('API Data Verification', () => {
+    let api;
 
     beforeAll(async () => {
-      solr = await import('../../scraper/solr.js');
+      api = await import('../../scraper/api.js');
     });
 
-    itIfSolr('should have MSG jobs in SOLR with correct company name', async () => {
-      const result = await solr.querySOLR(TEST_CIF);
+    itIfApi('should have MSG jobs via API with correct company name', async () => {
+      const result = await api.querySOLR(TEST_CIF);
 
       if (result.numFound === 0) {
-        console.log('⚠️ No MSG jobs in Solr — skipping SOLR data verification');
+        console.log('⚠️ No MSG jobs in SOLR — skipping API data verification');
         return;
       }
 
@@ -255,8 +259,8 @@ describe('E2E: Full Scraping Pipeline', () => {
       }
     }, 15000);
 
-    itIfSolr('should have MSG company core entry with required fields', async () => {
-      const msg = await solr.getCompanyByCif(TEST_CIF);
+    itIfApi('should have MSG company core entry with required fields', async () => {
+      const msg = await api.getCompanyByCif(TEST_CIF);
 
       expect(msg).not.toBeNull();
       expect(msg.company).toBe('MSG SYSTEMS ROMÂNIA SRL');

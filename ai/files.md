@@ -6,7 +6,7 @@
 |------|-------------|
 | `scraper/index.js` | Main scraper - full workflow: validate company → scrape → transform → upsert → generate docs/jobs.md |
 | `scraper/company.js` | Validates company via ANAF + Peviitor APIs, checks if company is active/inactive |
-| `scraper/solr.js` | SOLR operations module - exports querySOLR, deleteJobByUrl, upsertJobs + standalone verify/extract/company commands |
+| `scraper/api.js` | API operations module - all Solr operations via peviitor API (query, delete, upsert jobs) + standalone verify/extract/company commands |
 | `scraper/demoanaf.js` | CLI entry point for ANAF module (thin wrapper around anaf.js) |
 | `scraper/validate-jobs.js` | **Generic deep validator (manual use).** Full GET requests, parses page body for "no longer available" keywords. Works with any CIF, single URL, or file. Slower but catches soft-404s. Not used by CI. |
 | `scraper/anaf.js` | ANAF API core module - exports getCompanyFromANAF(cif), getCompanyFromANAFWithFallback(cif, cached), searchCompany(brandName) |
@@ -28,7 +28,7 @@
 | `tests/validate-msg-jobs.js` | **MSG-specific fast validator (used by CI).** HEAD requests only, uses CIF from scraper/config/company.json. Called nightly by `automation-testing.yml`. Supports `--dry-run` and `--delete`. |
 | `tests/unit/index.test.js` | Unit tests for index.js - parseMsgJobs, mapToJobModel, transformJobsForSOLR |
 | `tests/unit/company.test.js` | Unit tests for company.js - getCompanyBrand, validateAndGetCompany, fallback caching |
-| `tests/unit/solr.test.js` | Unit tests for solr.js - query, upsert, delete, HTTP error handling |
+| `tests/unit/api.test.js` | Unit tests for api.js - query, upsert, delete, HTTP error handling |
 | `tests/unit/demoanaf.test.js` | Unit tests for ANAF search and company retrieval with mocked responses |
 | `tests/integration/workflow.test.js` | Integration tests - ANAF live API, Peviitor API, SOLR company/job cores |
 | `tests/e2e/scraper.test.js` | E2E tests - full pipeline with real MSG Systems website, ANAF, and SOLR |
@@ -74,7 +74,7 @@
 | `package-lock.json` | Locked dependency versions |
 | `.npmrc` | npm configuration |
 | `.gitignore` | Ignores node_modules/, tmp/, .env.local, docs/company.json, scraper/anaf-cache.json |
-| `.env.local` | Local environment variables (SOLR_AUTH) - NOT committed |
+| `.env.local` | Local environment variables - NOT committed (no longer needed for unit tests; only integration/e2e tests need SOLR_AUTH for direct SOLR verification) |
 | `.github/CODEOWNERS` | Code ownership rules for PR reviews |
 | `.github/workflows/job-seeker-ro-spider.yml` | Daily scraping workflow (6 AM UTC) |
 | `.github/workflows/automation-testing.yml` | Automated tests on every push/PR |

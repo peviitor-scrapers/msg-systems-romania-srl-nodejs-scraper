@@ -32,7 +32,7 @@ Proiectul automatizează colectarea zilnică a job-urilor MSG Systems din Român
 - Generează `docs/jobs.md` automat — accesibil pe GitHub Pages
 - **Identitate companie într-un singur fișier** (`scraper/config/company.json`)
 - GitHub Actions: scrape zilnic + testare automată (unit, integration, e2e, consistency)
-- Teste SOLR condiționale — auto-skip când `SOLR_AUTH` nu e setat
+- Teste integration/e2e condiționale — auto-skip când `SOLR_AUTH` nu e setat
 - Se identifică prin User-Agent: `job_seeker_ro_spider`
 
 ## License

@@ -32,8 +32,8 @@ If you spawn a stuck task, kill it immediately rather than letting it hang.
 - Push after commit
 
 ### 3. Environment Variables
-- `SOLR_AUTH` must be set in `.env.local` for SOLR tests (format: `user:password`)
 - `.env.local` is loaded automatically at runtime via `dotenv` (see `package.json`) — never commit it
+- `SOLR_AUTH` is only needed for integration/e2e tests that verify against SOLR directly — unit tests no longer need it
 - Consistency tests also need `GITHUB_REPOSITORY` (format: `owner/repo`) and `GITHUB_TOKEN`
 
 ### 4. Testing
@@ -57,7 +57,7 @@ npm run test:consistency
 ### 5. ESM + Jest
 - Use `jest.unstable_mockModule` (NOT `jest.mock`) for mocking ESM modules
 - Run with `--experimental-vm-modules` flag
-- SOLR tests use conditional `itIfSolr` helper — auto-skip when `SOLR_AUTH` not set
+- Integration/e2e tests use conditional `itIfSolr` helper — auto-skip when `SOLR_AUTH` not set
 
 ### 6. Verification
 - După orice modificare, urmează [VERIFY.md](VERIFY.md) pas cu pas
@@ -72,10 +72,10 @@ npm run test:consistency
 - `scraper/student-programs.js` — scrapes student programs (internships) from /en/careers/student-programs/; integrated into main scraper
 - `scraper/demoanaf.js` — CLI wrapper around anaf.js
 - `scraper/company.js` — company validation (ANAF + Peviitor + SOLR); reads from `scraper/config/company.json`, writes `scraper/anaf-cache.json` for offline fallback
-- `scraper/solr.js` — SOLR operations
+- `scraper/api.js` — API operations module (all Solr operations via peviitor API: query, delete, upsert)
 - `scraper/validate-jobs.js` — manual deep validator (content-aware); thin wrapper over job-validator.js
 - `scraper/delete_request.json` — SOLR delete payload (maintenance tool)
-- `tests/validate-msg-jobs.js` — CI fast validator (HEAD only); thin wrapper over job-validator.js + solr.js
+- `tests/validate-msg-jobs.js` — CI fast validator (HEAD only); thin wrapper over job-validator.js + api.js
 - `scraper/index.js` — main scraper orchestrator
 
 ### 8. Caching Behavior

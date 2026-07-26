@@ -30,7 +30,7 @@ job_seeker_ro_spider
 ├── scraper/
 │   ├── index.js                # Orchestrator principal
 │   ├── company.js              # Validare companie (ANAF + Peviitor + SOLR) cu cache 7 zile
-│   ├── solr.js                 # Operații SOLR (query, upsert, delete, company)
+│   ├── api.js                   # Operații API (query, upsert, delete jobs — fără acces direct SOLR)
 │   ├── demoanaf.js             # CLI wrapper pentru anaf.js
 │   ├── validate-jobs.js        # Validator job URLs (activ/expirat)
 │   ├── anaf.js                 # Modul ANAF API (search + company details)
@@ -61,9 +61,8 @@ job_seeker_ro_spider
 |---|---|---|
 | MSG Systems Careers | `https://www.msg-systems.ro/en/careers/job-offerings` | Public (HTML) |
 | ANAF (demoanaf) | `https://demoanaf.ro/api/...` | Public |
-| Peviitor | `https://api.peviitor.ro/v1/company/` | Public |
-| SOLR (job core) | `https://solr.peviitor.ro/solr/job` | `SOLR_AUTH` |
-| SOLR (company core) | `https://solr.peviitor.ro/solr/company` | `SOLR_AUTH` |
+| Peviitor | `https://api.peviitor.ro/v1/` | Public |
+| SOLR (direct — doar integration/e2e tests) | `https://solr.peviitor.ro/solr/job` | `SOLR_AUTH` |
 
 ## Robots.txt
 
@@ -87,4 +86,4 @@ npm run test:integration
 npm run test:e2e
 ```
 
-Testele SOLR folosesc `itIfSolr` — se auto-skip dacă variabila `SOLR_AUTH` nu e setată.
+Testele de integrare/e2e folosesc `itIfSolr` — se auto-skip dacă variabila `SOLR_AUTH` nu e setată.

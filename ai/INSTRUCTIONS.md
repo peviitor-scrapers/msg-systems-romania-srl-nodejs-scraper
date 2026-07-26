@@ -61,9 +61,6 @@ When working on this scraper:
 ## Running the Scraper
 
 ```bash
-# Set environment variables
-export SOLR_AUTH=your-solr-credentials
-
 # Run the full scraper workflow (single command)
 node scraper/index.js
 
@@ -131,16 +128,16 @@ generateJobsMarkdown() → docs/jobs.md
 | `scraper/config/company.js` | ESM wrapper that loads `scraper/config/company.json` for Node code |
 | `scraper/index.js` | Main entry point - full workflow: validate company → scrape → transform → upsert → generate docs/jobs.md |
 | `scraper/company.js` | Validates company via ANAF + Peviitor; writes `scraper/anaf-cache.json` for offline fallback |
-| `scraper/solr.js` | SOLR operations module - query, delete, upsert jobs + standalone commands |
+| `scraper/api.js` | API operations module - all Solr operations via peviitor API (query, delete, upsert jobs) + standalone commands |
 | `scraper/validate-jobs.js` | Manual deep validator (content-aware); thin CLI wrapper over `scraper/job-validator.js` |
 | `scraper/anaf.js` | Company data module - ANAF (demoanaf.ro) + CUIScan (cuiscan.ro) fallback + CUIFirma search fallback. No retries — fast fail + fallback. |
 | `scraper/markdown-generator.js` | Generates `docs/jobs.md` with company info and all scraped jobs |
 | `scraper/job-validator.js` | Shared validation primitives: `validateByHead`, `validateByContent`, `DEFAULT_EXPIRED_KEYWORDS` |
 | `scraper/demoanaf.js` | CLI entry point for ANAF module (thin wrapper around `scraper/anaf.js`) |
-| `tests/validate-msg-jobs.js` | CI fast validator (HEAD only); thin CLI over `scraper/job-validator.js` + `scraper/solr.js` |
+| `tests/validate-msg-jobs.js` | CI fast validator (HEAD only); thin CLI over `scraper/job-validator.js` + `scraper/api.js` |
 | `tests/unit/index.test.js` | Unit tests for parseMsgJobs, mapToJobModel, transformJobsForSOLR |
 | `tests/unit/company.test.js` | Unit tests for validateAndGetCompany and fallback caching |
-| `tests/unit/solr.test.js` | Unit tests for SOLR query, upsert, delete operations |
+| `tests/unit/api.test.js` | Unit tests for API operations - query, upsert, delete, HTTP error handling |
 | `tests/unit/demoanaf.test.js` | Unit tests for ANAF search and company retrieval |
 | `tests/integration/workflow.test.js` | Live integration tests - ANAF + SOLR |
 | `tests/e2e/scraper.test.js` | End-to-end tests with real MSG Systems website |
@@ -153,8 +150,8 @@ generateJobsMarkdown() → docs/jobs.md
 
 - **DemoANAF Search**: `https://demoanaf.ro/api/search?q=BRAND` - Search companies by name/brand
 - **DemoANAF Company**: `https://demoanaf.ro/api/company/:cui` - Get company details by CIF
-- **Peviitor API**: `https://api.peviitor.ro/v1/company/`
-- **Solr**: `https://solr.peviitor.ro/solr/job` (auth: via `SOLR_AUTH` environment variable)
+- **Peviitor API**: `https://api.peviitor.ro/v1/` — all Solr operations go through the API
+- **DemoANAF**: `https://demoanaf.ro/api/` — company data from ANAF
 
 ## Rate Limiting & Politeness
 
@@ -173,7 +170,7 @@ Derived scrapers should keep these defaults unless the target site explicitly pe
 
 | Variable | Description |
 |----------|-------------|
-| `SOLR_AUTH` | SOLR credentials in format `user:password` |
+| `SOLR_AUTH` | SOLR credentials (only for integration/e2e tests that verify against SOLR directly) |
 | `GITHUB_REPOSITORY` | Used by consistency tests — format: `owner/repo` |
 | `GITHUB_TOKEN` | GitHub API token for consistency tests |
 
@@ -183,13 +180,13 @@ Derived scrapers should keep these defaults unless the target site explicitly pe
 
 ```bash
 # Verify jobs in SOLR by CIF
-node scraper/solr.js <CIF>
+node scraper/api.js <CIF>
 
 # Extract existing jobs from SOLR by CIF
-node scraper/solr.js extract <CIF>
+node scraper/api.js extract <CIF>
 
 # Query company in SOLR
-node scraper/solr.js company <search_term>
+node scraper/api.js company <search_term>
 
 # Get company details from ANAF by CIF
 node scraper/demoanaf.js <CIF>
@@ -211,7 +208,7 @@ node scraper/validate-jobs.js <CIF> --delete
 
 This project requires multiple levels of testing:
 
-1. **Unit Tests** - Test individual modules (solr.js, company.js) in isolation
+1. **Unit Tests** - Test individual modules (api.js, company.js) in isolation
 2. **Integration Tests** - Test API interactions (ANAF, Peviitor, SOLR) in `/tests/integration` folder
 3. **E2E Tests** - Test full workflow in `/tests/e2e` folder
 

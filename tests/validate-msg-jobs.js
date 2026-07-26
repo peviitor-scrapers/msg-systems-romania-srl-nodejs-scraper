@@ -12,7 +12,7 @@
  *   --delete     Delete invalid jobs from SOLR after listing
  */
 import companyConfig from "../scraper/config/company.js";
-import { querySOLR, deleteJobByUrl } from "../scraper/solr.js";
+import { querySOLR, deleteJobByUrl } from "../scraper/api.js";
 import { validateByHead } from "../scraper/job-validator.js";
 
 const CIF = companyConfig.id;
