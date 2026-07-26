@@ -5,19 +5,19 @@
   "anaf": {
     "cui": 24415960,
     "name": "MSG SYSTEMS ROMÂNIA SRL",
-    "address": "STR. BARBU VACARESCU, NR.164, SECTOR 2, BUCURESTI",
-    "registrationNumber": "J40/8732/2008",
+    "address": "Str. SAMUIEL BRASSAI, 9, Municipiul Cluj-Napoca, Cluj",
+    "registrationNumber": "J2008003646126",
     "phone": "",
     "fax": "",
-    "postalCode": "020272",
-    "caenCode": "6201",
+    "postalCode": "0400124",
+    "caenCode": "6210",
     "iban": "",
     "registrationState": "",
     "registrationDate": "2008-06-13",
-    "fiscalAuthority": "Direcţia Generală a Finanţelor Publice Municipiul Bucureşti",
+    "fiscalAuthority": "Direcţia Generală de Administrare a Marilor Contribuabili",
     "ownershipForm": "PROPR.PRIVATA-CAPITAL PRIVAT STRAIN",
     "organizationForm": "PERSOANA JURIDICA",
-    "legalForm": "SOCIETATE COMERCIALĂ CU RĂSPUNDERE LIMITATĂ",
+    "legalForm": "SRL",
     "vatRegistered": true,
     "vatPeriods": [
       {
@@ -36,12 +36,12 @@
     "splitVat": false,
     "eFacturaRegistered": false,
     "headquartersAddress": {
-      "street": "Str. Barbu Vacarescu",
-      "number": "164",
-      "locality": "Sector 2 Mun. Bucureşti",
-      "county": "MUNICIPIUL BUCUREŞTI",
-      "country": "",
-      "postalCode": "020272"
+      "street": "Str. SAMUIEL BRASSAI",
+      "number": "9",
+      "locality": "Municipiul Cluj-Napoca",
+      "county": "Cluj",
+      "country": "România",
+      "postalCode": "0400124"
     },
     "fiscalAddress": {
       "street": "",
@@ -58,15 +58,19 @@
       }
     ],
     "authorizedCaenCodes": [
-      "6201",
-      "6202",
-      "6209",
-      "6311",
-      "7021",
-      "7022",
-      "7311",
-      "7312",
-      "8299"
+      "4650",
+      "4690",
+      "4740",
+      "5829",
+      "6210",
+      "6220",
+      "6290",
+      "6310",
+      "6391",
+      "6392",
+      "6820",
+      "8559",
+      "9510"
     ],
     "onrcStatus": 1048,
     "onrcStatusLabel": "Funcțiune"
@@ -94,9 +98,9 @@
     "active": true,
     "inactiveSince": null,
     "reactivatedSince": null,
-    "address": "STR. BARBU VACARESCU, NR.164, SECTOR 2, BUCURESTI",
-    "registrationNumber": "J40/8732/2008",
-    "caenCode": "6201",
+    "address": "Str. SAMUIEL BRASSAI, 9, Municipiul Cluj-Napoca, Cluj",
+    "registrationNumber": "J2008003646126",
+    "caenCode": "6210",
     "vatRegistered": true,
     "eFacturaRegistered": false
   }
