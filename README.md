@@ -35,43 +35,6 @@ Proiectul automatizează colectarea zilnică a job-urilor MSG Systems din Român
 - Teste SOLR condiționale — auto-skip când `SOLR_AUTH` nu e setat
 - Se identifică prin User-Agent: `job_seeker_ro_spider`
 
-## Project Structure
-
-```
-├── scraper/
-│   ├── index.js                # Main scraper (HTML/cheerio single-page)
-│   ├── company.js              # Company validation via ANAF + Peviitor + SOLR
-│   ├── solr.js                 # SOLR operations (query, upsert, delete, company)
-│   ├── demoanaf.js             # CLI wrapper for anaf.js
-│   ├── validate-jobs.js        # Job URL validator — checks active/expired
-│   ├── anaf.js                 # ANAF API core module
-│   ├── markdown-generator.js   # Generates docs/jobs.md
-│   ├── job-validator.js        # Shared validateByHead + validateByContent
-│   ├── delete_request.json     # SOLR delete payload (maintenance)
-│   └── config/
-│       ├── company.json        # Single source of truth: CIF, brand, URLs
-│       └── company.js          # ESM loader for company.json
-├── ai/                         # AI agent prompts & instructions
-│   ├── AGENTS.md
-│   ├── INSTRUCTIONS.md
-│   ├── VERIFY.md
-│   └── ...
-├── tests/
-│   ├── validate-msg-jobs.js    # CI fast validator (HEAD only)
-│   ├── unit/
-│   ├── integration/
-│   ├── e2e/
-│   └── consistency/
-├── docs/
-│   ├── index.html              # GitHub Pages dashboard
-│   ├── jobs.md                 # Scraped jobs (auto-generated)
-│   └── test-results/
-└── .github/workflows/
-    ├── job-seeker-ro-spider.yml    # Daily scraping at 6 AM UTC
-    ├── automation-testing.yml      # Test suite on push/PR
-    └── job-recovery-from-disaster.yml  # SOLR company core recovery
-```
-
 ## License
 
 Copyright (c) 2024-2026 BOGA SEBASTIAN-NICOLAE
