@@ -62,7 +62,7 @@ job_seeker_ro_spider
 | MSG Systems Careers | `https://www.msg-systems.ro/en/careers/job-offerings` | Public (HTML) |
 | ANAF (demoanaf) | `https://demoanaf.ro/api/...` | Public |
 | Peviitor | `https://api.peviitor.ro/v1/` | Public |
-| SOLR (direct — doar integration/e2e tests) | `https://solr.peviitor.ro/solr/job` | `SOLR_AUTH` |
+| SOLR (direct) | `https://solr.peviitor.ro/solr/job` | — |
 
 ## Robots.txt
 
@@ -86,4 +86,4 @@ npm run test:integration
 npm run test:e2e
 ```
 
-Testele de integrare/e2e folosesc `itIfSolr` — se auto-skip dacă variabila `SOLR_AUTH` nu e setată.
+Testele de integrare/e2e folosesc API-ul peviitor.ro — nu necesită autentificare directă SOLR.

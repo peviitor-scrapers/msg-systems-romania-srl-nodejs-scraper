@@ -33,7 +33,7 @@ If you spawn a stuck task, kill it immediately rather than letting it hang.
 
 ### 3. Environment Variables
 - `.env.local` is loaded automatically at runtime via `dotenv` (see `package.json`) — never commit it
-- `SOLR_AUTH` is no longer needed — all operations go through `api.peviitor.ro/v1`. Only `validate-msg-jobs.js` (skip guard) and `repo.test.js` (secret check) reference it
+- `SOLR_AUTH` is no longer needed — all operations go through `api.peviitor.ro/v1`
 - Consistency tests also need `GITHUB_REPOSITORY` (format: `owner/repo`) and `GITHUB_TOKEN`
 
 ### 4. Testing
