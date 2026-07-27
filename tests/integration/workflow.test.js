@@ -110,8 +110,11 @@ describe('Integration: API Workflow', () => {
   });
 
   describe('Peviitor API', () => {
-    it('should respond successfully and contain companies array (Peviitor API may block non-browser requests)', async () => {
-      expect(true).toBe(true);
+    itIfApi('should return company data from Peviitor API', async () => {
+      const api = await import('../../scraper/api.js');
+      const company = await api.getCompanyByCif(MSG_CIF);
+      expect(company).toBeTruthy();
+      expect(company.id).toBe(MSG_CIF);
     }, 15000);
   });
 

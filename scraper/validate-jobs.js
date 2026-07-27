@@ -20,6 +20,7 @@
  */
 
 import fs from "fs";
+import { querySOLR } from "./api.js";
 import { validateByContent } from "./job-validator.js";
 
 async function checkUrls(urls) {
@@ -61,7 +62,6 @@ async function checkUrls(urls) {
 async function validateJobs(cif) {
   console.log("=== Validate Job URLs from Solr ===\n");
   
-  const { querySOLR } = await import("./api.js");
   const result = await querySOLR(cif);
   const urls = result.docs.map(doc => doc.url);
   

@@ -3,8 +3,6 @@ import * as cheerio from "cheerio";
 
 const STUDENT_PROGRAMS_URL = "https://www.msg-systems.ro/en/careers/student-programs/";
 
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-
 async function fetchStudentProgramsPage() {
   const res = await fetch(STUDENT_PROGRAMS_URL, {
     headers: {

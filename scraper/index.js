@@ -10,13 +10,9 @@ import { getStudentPrograms } from "./student-programs.js";
 
 const COMPANY_ID = companyConfig.id;
 
-const TIMEOUT = 10000;
-
 const LISTING_URL = "https://www.msg-systems.ro/en/careers/job-offerings";
 
 let COMPANY_NAME = null;
-
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function fetchListingPage() {
   const res = await fetch(LISTING_URL, {
@@ -100,7 +96,7 @@ function parseMsgJobs(html) {
   };
 }
 
-async function scrapeAllListings(testOnlyOnePage = false) {
+async function scrapeAllListings() {
   const allJobs = [];
   const seenUrls = new Set();
 
@@ -189,8 +185,6 @@ function transformJobsForSOLR(payload) {
 }
 
 async function main() {
-  const testOnlyOnePage = process.argv.includes("--test");
-
   try {
     fs.mkdirSync("scraper", { recursive: true });
 
@@ -220,7 +214,7 @@ async function main() {
       console.log(`Note: Could not upsert company to SOLR core: ${err.message}`);
     }
 
-    const rawJobs = await scrapeAllListings(testOnlyOnePage);
+    const rawJobs = await scrapeAllListings();
     const scrapedCount = rawJobs.length;
     console.log(`Jobs scraped from MSG Systems website: ${scrapedCount}`);
 

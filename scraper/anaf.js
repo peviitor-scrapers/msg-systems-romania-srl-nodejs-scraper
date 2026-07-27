@@ -112,7 +112,7 @@ async function searchFromCuifirma(brandName) {
   if (!res.ok) throw new Error(`CUIFirma search error: ${res.status}`);
   const json = await res.json();
   return (json.results || []).map(r => ({
-    cui: parseInt(r.cui, 10),
+    cui: String(r.cui),
     name: r.name,
     statusLabel: r.is_active ? "Funcțiune" : (r.status_label || "Inactiv")
   }));

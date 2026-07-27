@@ -122,7 +122,7 @@ describe('scraper/anaf.js', () => {
 
       expect(Array.isArray(results)).toBe(true);
       expect(results.length).toBeGreaterThan(0);
-      expect(results[0].cui).toBe(24415960);
+      expect(results[0].cui).toBe('24415960');
     });
 
     it('should encode brand name in URL', async () => {

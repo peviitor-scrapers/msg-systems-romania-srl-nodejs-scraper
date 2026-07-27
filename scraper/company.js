@@ -17,7 +17,7 @@ import companyConfig from "./config/company.js";
 // ============================================================================
 
 // Peviitor API base URL for company validation
-const Peviitor_API_URL = "https://api.peviitor.ro/v1/firme/company/";
+const PEVIITOR_API_URL = "https://api.peviitor.ro/v1/firme/company/";
 
 const COMPANY_ID = companyConfig.id;
 const COMPANY_BRAND = companyConfig.brand || null;
@@ -60,7 +60,7 @@ const COMPANY_MODEL_FIELDS = [
  * @returns {Promise<Object|null>} - Company data or null if not found
  */
 async function getCompanyFromPeviitor(companyName) {
-  const url = `${Peviitor_API_URL}?name=${encodeURIComponent(companyName)}`;
+  const url = `${PEVIITOR_API_URL}?name=${encodeURIComponent(companyName)}`;
   const res = await fetch(url, {
     headers: {
       origin: "https://peviitor.ro",
@@ -302,7 +302,7 @@ export async function validateAndGetCompany() {
     return { status: "inactive", company, cif, existingJobsCount: solrResult.numFound };
   }
   
-  const address = anafData?.address || anafData?.headquartersAddress?.locality || "";
+  const address = anafData?.headquartersAddress?.locality || anafData?.address || "";
   
   console.log(`\n✅ Company validated: ${company}, CIF: ${cif}`);
   console.log("Ready to scrape jobs...\n");
