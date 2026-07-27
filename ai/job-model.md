@@ -19,7 +19,7 @@
 | workmode         | string   | "remote", "on-site", or "hybrid" |
 | date             | date     | Scrape date. ISO8601 UTC timestamp (ex: "2026-01-18T10:00:00Z") |
 | status           | string   | "scraped", "tested", "published", or "verified". Default: "scraped" |
-| vdate            | date     | Verified date. ISO8601. Set only when status="verified" |
+| vdate            | date     | Verified date. ISO8601. Set when status becomes "tested" or "verified" |
 | expirationdate   | date     | Estimated job expiration. ISO8601 |
 | salary           | string   | Salary range + currency. Format: "MIN-MAX CURRENCY" (ex: "5000-8000 RON") |
 

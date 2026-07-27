@@ -63,9 +63,6 @@ When working on this scraper:
 ```bash
 # Run the full scraper workflow (single command)
 node scraper/index.js
-
-# Test mode (one page only, limit 10 jobs)
-node scraper/index.js --test
 ```
 
 > **Important**: Scraper does NOT delete jobs from other sources (ANOFM, etc). It only upserts MSG Systems jobs. Existing jobs are preserved.
@@ -159,7 +156,6 @@ The scraper is intentionally slow to be a good citizen:
 
 | Setting | Value | Where |
 |---------|-------|-------|
-| Request timeout | 10000 ms | `scraper/index.js` — `TIMEOUT` constant |
 | ANAF fallback | 1 try demoanaf.ro → 1 try cuiscan.ro → cache | `scraper/anaf.js` |
 | Concurrency | 1 (sequential) | No `Promise.all` for paginated fetches |
 | User-Agent | `job_seeker_ro_spider` | Identifies the scraper in server logs |
