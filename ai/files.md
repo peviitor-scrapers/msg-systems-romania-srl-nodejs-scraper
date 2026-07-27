@@ -33,7 +33,7 @@
 | `tests/integration/workflow.test.js` | Integration tests - ANAF live API, Peviitor API, SOLR company/job cores |
 | `tests/e2e/scraper.test.js` | E2E tests - full pipeline with real MSG Systems website, ANAF, and SOLR |
 | `tests/consistency/public.test.js` | Verifies repository is public on GitHub |
-| `tests/consistency/repo.test.js` | Verifies default branch, GitHub Pages, SOLR_AUTH secret, workflow files |
+| `tests/consistency/repo.test.js` | Verifies default branch, GitHub Pages, secrets, workflow files |
 | `tests/consistency/topics.test.js` | Verifies repository has required topics: job-seeker-ro-spider, peviitor-ro |
 | `tests/consistency/workflow-naming.test.js` | Validates workflow file naming conventions |
 
@@ -74,7 +74,7 @@
 | `package-lock.json` | Locked dependency versions |
 | `.npmrc` | npm configuration |
 | `.gitignore` | Ignores node_modules/, tmp/, .env.local, docs/company.json, scraper/anaf-cache.json |
-| `.env.local` | Local environment variables - NOT committed (no longer needed for unit tests; only integration/e2e tests need SOLR_AUTH for direct SOLR verification) |
+| `.env.local` | Local environment variables - NOT committed (no longer needed; all operations go through api.peviitor.ro/v1) |
 | `.github/CODEOWNERS` | Code ownership rules for PR reviews |
 | `.github/workflows/job-seeker-ro-spider.yml` | Daily scraping workflow (6 AM UTC) |
 | `.github/workflows/automation-testing.yml` | Automated tests on every push/PR |

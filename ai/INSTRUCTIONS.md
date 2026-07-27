@@ -170,7 +170,7 @@ Derived scrapers should keep these defaults unless the target site explicitly pe
 
 | Variable | Description |
 |----------|-------------|
-| `SOLR_AUTH` | SOLR credentials (only for integration/e2e tests that verify against SOLR directly) |
+| `SOLR_AUTH` | Legacy — no longer needed (all operations use api.peviitor.ro/v1) |
 | `GITHUB_REPOSITORY` | Used by consistency tests — format: `owner/repo` |
 | `GITHUB_TOKEN` | GitHub API token for consistency tests |
 

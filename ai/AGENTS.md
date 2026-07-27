@@ -33,7 +33,7 @@ If you spawn a stuck task, kill it immediately rather than letting it hang.
 
 ### 3. Environment Variables
 - `.env.local` is loaded automatically at runtime via `dotenv` (see `package.json`) — never commit it
-- `SOLR_AUTH` is only needed for integration/e2e tests that verify against SOLR directly — unit tests no longer need it
+- `SOLR_AUTH` is no longer needed — all operations go through `api.peviitor.ro/v1`. Only `validate-msg-jobs.js` (skip guard) and `repo.test.js` (secret check) reference it
 - Consistency tests also need `GITHUB_REPOSITORY` (format: `owner/repo`) and `GITHUB_TOKEN`
 
 ### 4. Testing
@@ -44,10 +44,10 @@ npm test
 # Unit tests (no env vars needed)
 npm run test:unit
 
-# Integration tests (ANAF public API, SOLR conditional)
+# Integration tests (ANAF public API, Peviitor API conditional)
 npm run test:integration
 
-# E2E tests (real MSG Systems website, SOLR conditional)
+# E2E tests (real MSG Systems website, Peviitor API conditional)
 npm run test:e2e
 
 # Consistency tests (GitHub repo config — needs GITHUB_REPOSITORY + GITHUB_TOKEN)
@@ -57,7 +57,7 @@ npm run test:consistency
 ### 5. ESM + Jest
 - Use `jest.unstable_mockModule` (NOT `jest.mock`) for mocking ESM modules
 - Run with `--experimental-vm-modules` flag
-- Integration/e2e tests use conditional `itIfSolr` helper — auto-skip when `SOLR_AUTH` not set
+- Integration/e2e tests use conditional `HAS_API` checks — auto-skip when `api.peviitor.ro/v1` is unreachable
 
 ### 6. Verification
 - După orice modificare, urmează [VERIFY.md](VERIFY.md) pas cu pas
