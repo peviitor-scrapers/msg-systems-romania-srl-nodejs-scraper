@@ -10,11 +10,11 @@
 | Location | Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-07-27 |
+| Last Scraped | 2026-07-28 |
 
-## Current Job Listings (29)
+## Current Job Listings (30)
 
-_Generated: 2026-07-27T05:37:05.482Z_
+_Generated: 2026-07-28T08:32:28.531Z_
 
 ### Senior Java Developer
 
@@ -246,4 +246,12 @@ _Generated: 2026-07-27T05:37:05.482Z_
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
+- **Status:** scraped
+
+### COBOL Developer
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/cobol-developer-automotive/](https://www.msg-systems.ro/en/careers/job-offerings/cobol-developer-automotive/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** software development
 - **Status:** scraped
