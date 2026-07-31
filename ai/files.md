@@ -30,6 +30,7 @@
 | `tests/unit/company.test.js` | Unit tests for company.js - getCompanyBrand, validateAndGetCompany, fallback caching |
 | `tests/unit/api.test.js` | Unit tests for api.js - query, upsert, delete, HTTP error handling |
 | `tests/unit/demoanaf.test.js` | Unit tests for ANAF search and company retrieval with mocked responses |
+| `tests/unit/student-programs.test.js` | Unit tests for student-programs.js - parseStudentPrograms, slug URLs, location parsing, getStudentPrograms |
 | `tests/integration/workflow.test.js` | Integration tests - ANAF live API, Peviitor API, SOLR company/job cores |
 | `tests/e2e/scraper.test.js` | E2E tests - full pipeline with real MSG Systems website, ANAF, and SOLR |
 | `tests/consistency/public.test.js` | Verifies repository is public on GitHub |

@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `.github/workflows/automation-template-sync-check.yml` — weekly check against the EPAM template version; opens a `template-sync` issue when the template is ahead
 - `tests/consistency/version.test.js` — package.json version must match latest CHANGELOG version
 - `tests/consistency/root-files.test.js` — required root open-source files must exist
+- `tests/unit/student-programs.test.js` — unit tests for `scraper/student-programs.js` (parseStudentPrograms, slug URLs, location parsing, getStudentPrograms); exports `parseStudentPrograms` for testing
 - `CONTRIBUTING.md` moved to repo root (derived-scraper note for the EPAM template)
 - `playwright` devDependency
 

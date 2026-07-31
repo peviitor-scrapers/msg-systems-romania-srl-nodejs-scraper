@@ -18,7 +18,7 @@ async function fetchStudentProgramsPage() {
   return await res.text();
 }
 
-function parseStudentPrograms(html) {
+export function parseStudentPrograms(html) {
   const $ = cheerio.load(html);
   const programs = [];
 
