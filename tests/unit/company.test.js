@@ -66,7 +66,7 @@ const COMPANY_CONFIG_TEMPLATE = {
   location: ["Cluj-Napoca"],
   website: ["https://www.msg-systems.ro"],
   career: ["https://www.msg-systems.ro/en/careers/job-offerings/"],
-  scraperFile: "https://github.com/sebiboga/msg-systems-romania-srl-nodejs-scraper/actions/workflows/job-seeker-ro-spider.yml"
+  scraperFile: "https://github.com/peviitor-scrapers/msg-systems-romania-srl-nodejs-scraper/actions/workflows/job-seeker-ro-spider.yml"
 };
 
 function writeCompanyConfig(lastScraped) {
