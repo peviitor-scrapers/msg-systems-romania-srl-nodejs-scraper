@@ -10,11 +10,11 @@
 | Location | Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-07-30 |
+| Last Scraped | 2026-07-31 |
 
 ## Current Job Listings (30)
 
-_Generated: 2026-07-30T08:24:35.912Z_
+_Generated: 2026-07-31T06:05:45.578Z_
 
 ### Senior Java Developer
 
