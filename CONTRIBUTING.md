@@ -2,13 +2,19 @@
 
 Thank you for your interest in contributing!
 
+## 🌱 This Repo Is a Derived Scraper
+
+This repo is a **derived scraper** for MSG Systems Romania, generated from the [EPAM template](https://github.com/sebiboga/epam-systems-international-srl-nodejs-scraper).
+
+For instructions on deriving a new scraper from the EPAM template, see the template's [CONTRIBUTING.md](https://github.com/sebiboga/epam-systems-international-srl-nodejs-scraper/blob/main/CONTRIBUTING.md).
+
 ## Code Style for Contributions
 
 - Use ES6+ modules (`type: module` in `package.json`)
 - Add tests for new features in the matching `tests/<level>/` folder
 - Ensure all tests pass before submitting PR
-- Update relevant `.md` files (especially `files.md` and `AGENTS.md`) when adding new files
-- Reference a GitHub issue in every commit (see [ISSUES.md](ISSUES.md))
+- Update relevant `.md` files (especially `ai/files.md` and `ai/AGENTS.md`) when adding new files
+- Reference a GitHub issue in every commit (see [ISSUES.md](ai/ISSUES.md))
 
 ## Development Setup
 

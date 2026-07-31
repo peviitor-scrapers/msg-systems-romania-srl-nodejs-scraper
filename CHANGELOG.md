@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-07-31
+
+### Added
+- `scraper/job-validator.js`: `validateByBrowser()` — deep validation in headless Chromium (Playwright) for JS-rendered 404 pages; new expired keyword `"the page you are looking for doesn't exist"`
+- `tests/validate-msg-jobs.js`: validation modes `--head` (default), `--content`, `--browser` + `--timeout` flag
+- `.github/workflows/job-deep-validate.yml` — manual deep-validate workflow (browser mode, catches JS 404s)
+- `.github/workflows/automation-template-sync-check.yml` — weekly check against the EPAM template version; opens a `template-sync` issue when the template is ahead
+- `tests/consistency/version.test.js` — package.json version must match latest CHANGELOG version
+- `tests/consistency/root-files.test.js` — required root open-source files must exist
+- `CONTRIBUTING.md` moved to repo root (derived-scraper note for the EPAM template)
+- `playwright` devDependency
+
 ## [1.1.0] - 2026-07-26
 
 ### Changed

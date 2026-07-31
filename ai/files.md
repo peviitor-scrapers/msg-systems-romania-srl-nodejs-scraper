@@ -48,7 +48,6 @@
 | `ai/company-model.md` | Company schema definition (Peviitor Core) - fields, types, validation rules |
 | `ai/VERIFY.md` | Step-by-step verification checklist after changes |
 | `ai/BRANCH.md` | Branch strategy and naming conventions |
-| `ai/CONTRIBUTING.md` | Contribution guidelines |
 | `ai/ISSUES.md` | Issue tracking conventions |
 | `ai/PUBLIC.md` | Notes on public visibility and data policies |
 | `ai/ROBOTS.md` | robots.txt analysis and scraping policy for MSG Systems |
@@ -62,6 +61,7 @@
 |------|-------------|
 | `README.md` | Public-facing project README with badges, structure, and usage |
 | `CHANGELOG.md` | Version history and notable changes |
+| `CONTRIBUTING.md` | Contribution guidelines |
 | `SECURITY.md` | Security policy and vulnerability reporting |
 | `CODE_OF_CONDUCT.md` | Contributor Covenant Code of Conduct |
 | `LICENSE` | MIT License |
