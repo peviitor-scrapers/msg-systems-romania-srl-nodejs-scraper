@@ -7,14 +7,14 @@
 | CIF | 24415960 |
 | Brand | .msg |
 | Status | activ |
-| Location | Cluj-Napoca |
+| Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-08-03 |
+| Last Scraped | 2026-08-04 |
 
-## Current Job Listings (30)
+## Current Job Listings (27)
 
-_Generated: 2026-08-03T09:41:58.706Z_
+_Generated: 2026-08-04T08:34:27.278Z_
 
 ### Senior Java Developer
 
@@ -24,12 +24,12 @@ _Generated: 2026-08-03T09:41:58.706Z_
 - **Tags:** software development
 - **Status:** scraped
 
-### IT Operations Support Specialist
+### Test Automation Specilalist
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/it-operations-mainframe/](https://www.msg-systems.ro/en/careers/job-offerings/it-operations-mainframe/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/test-automation/](https://www.msg-systems.ro/en/careers/job-offerings/test-automation/)
 - **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** sys admin & tech support
+- **Location:** Timișoara
+- **Tags:** software development
 - **Status:** scraped
 
 ### Automation                                        Engineer
@@ -64,12 +64,12 @@ _Generated: 2026-08-03T09:41:58.706Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Senior Citrix Administrator
+### COBOL Developer
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-citrix-administrator/](https://www.msg-systems.ro/en/careers/job-offerings/senior-citrix-administrator/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/cobol-developer-automotive/](https://www.msg-systems.ro/en/careers/job-offerings/cobol-developer-automotive/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
-- **Tags:** sys admin & tech support
+- **Tags:** software development
 - **Status:** scraped
 
 ### Business Consultant
@@ -120,9 +120,9 @@ _Generated: 2026-08-03T09:41:58.706Z_
 - **Tags:** software development
 - **Status:** scraped
 
-### SAP Administrator - PP, QM & PM
+### Technical S4 Architect
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-administrator-module-pp-qm-pm/](https://www.msg-systems.ro/en/careers/job-offerings/sap-administrator-module-pp-qm-pm/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/](https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
@@ -136,12 +136,12 @@ _Generated: 2026-08-03T09:41:58.706Z_
 - **Tags:** sys admin & tech support
 - **Status:** scraped
 
-### Senior Network Administrator
+### SAP Solution Expert
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-network-administrator/](https://www.msg-systems.ro/en/careers/job-offerings/senior-network-administrator/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/](https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/)
 - **Work Mode:** on-site
-- **Location:** Timișoara
-- **Tags:** sys admin & tech support
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
 - **Status:** scraped
 
 ### Senior IT Consultant
@@ -230,28 +230,4 @@ _Generated: 2026-08-03T09:41:58.706Z_
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
-- **Status:** scraped
-
-### SAP Solution Expert
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/](https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
-### Technical S4 Architect
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/](https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
-### COBOL Developer
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/cobol-developer-automotive/](https://www.msg-systems.ro/en/careers/job-offerings/cobol-developer-automotive/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** software development
 - **Status:** scraped
