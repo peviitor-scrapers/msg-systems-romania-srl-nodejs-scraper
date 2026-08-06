@@ -7,14 +7,14 @@
 | CIF | 24415960 |
 | Brand | .msg |
 | Status | activ |
-| Location | Mun. Cluj-Napoca |
+| Location | Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-08-05 |
+| Last Scraped | 2026-08-06 |
 
-## Current Job Listings (27)
+## Current Job Listings (26)
 
-_Generated: 2026-08-05T08:34:03.190Z_
+_Generated: 2026-08-06T08:34:13.303Z_
 
 ### Senior Java Developer
 
@@ -29,7 +29,7 @@ _Generated: 2026-08-05T08:34:03.190Z_
 - **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/test-automation/](https://www.msg-systems.ro/en/careers/job-offerings/test-automation/)
 - **Work Mode:** on-site
 - **Location:** Timișoara
-- **Tags:** software development
+- **Tags:** software testing
 - **Status:** scraped
 
 ### Automation                                        Engineer
@@ -208,25 +208,17 @@ _Generated: 2026-08-05T08:34:03.190Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### SAP HCM Developer
+### Senior SAP S4HANA Test Manager
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-hcm-developer/](https://www.msg-systems.ro/en/careers/job-offerings/sap-hcm-developer/)
-- **Work Mode:** on-site
-- **Location:** Timișoara, Târgu Mureș
-- **Tags:** software development
-- **Status:** scraped
-
-### Product Owner SAP Security & Authorization
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/](https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/](https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
 - **Status:** scraped
 
-### Senior SAP S4HANA Test Manager
+### Product Owner SAP Security & Authorization
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/](https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/](https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
