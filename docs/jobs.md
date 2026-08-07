@@ -7,14 +7,14 @@
 | CIF | 24415960 |
 | Brand | .msg |
 | Status | activ |
-| Location | Cluj-Napoca |
+| Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-08-06 |
+| Last Scraped | 2026-08-07 |
 
 ## Current Job Listings (26)
 
-_Generated: 2026-08-06T08:34:13.303Z_
+_Generated: 2026-08-07T07:13:33.590Z_
 
 ### Senior Java Developer
 
