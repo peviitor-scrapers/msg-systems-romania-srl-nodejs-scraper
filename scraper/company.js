@@ -225,23 +225,23 @@ export async function getCompanyData() {
   try {
     anafData = await getCompanyFromANAF(COMPANY_ID);
   } catch (err) {
-    if (companyConfig.lastScraped) {
-      console.log(`⚠️ ANAF unreachable (${err.message}) — falling back to stale config`);
-      return {
-        company: companyConfig.company.toUpperCase(),
-        cif: companyConfig.id,
-        active: companyConfig.status === "activ",
-        anafData: null
-      };
-    }
-    throw err;
+    console.log(`⚠️ ANAF unreachable () — falling back to company config`);
+    return {
+      company: companyConfig.company.toUpperCase(),
+      cif: companyConfig.id,
+      active: companyConfig.status === "activ",
+      anafData: null
+    };
   }
 
-  if (!anafData) {
-    throw new Error("No data from ANAF - cannot proceed with scraping");
-  }
-  if (!anafData.name) {
-    throw new Error("ANAF returned no company name - cannot proceed with scraping");
+  if (!anafData || !anafData.name) {
+    console.log("⚠️ ANAF returned no usable company data — falling back to company config");
+    return {
+      company: companyConfig.company.toUpperCase(),
+      cif: companyConfig.id,
+      active: companyConfig.status === "activ",
+      anafData: null
+    };
   }
 
   console.log(`ANAF returned name: ${anafData.name}`);
