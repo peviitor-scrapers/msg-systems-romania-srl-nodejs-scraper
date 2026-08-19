@@ -7,14 +7,14 @@
 | CIF | 24415960 |
 | Brand | .msg |
 | Status | activ |
-| Location | Cluj-Napoca |
+| Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-08-18 |
+| Last Scraped | 2026-08-19 |
 
-## Current Job Listings (26)
+## Current Job Listings (23)
 
-_Generated: 2026-08-18T06:40:25.194Z_
+_Generated: 2026-08-19T06:40:44.747Z_
 
 ### Senior Java Developer
 
@@ -40,12 +40,12 @@ _Generated: 2026-08-18T06:40:25.194Z_
 - **Tags:** sys admin & tech support
 - **Status:** scraped
 
-### Service Desk Agent
+### Product Owner SAP Security & Authorization
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/service-desk-agent/](https://www.msg-systems.ro/en/careers/job-offerings/service-desk-agent/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/](https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
-- **Tags:** sys admin & tech support
+- **Tags:** consulting
 - **Status:** scraped
 
 ### Systems Administrator- Virtualization and Storage
@@ -168,9 +168,9 @@ _Generated: 2026-08-18T06:40:25.194Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Cloud Security Specialist
+### Senior SAP S4HANA Test Manager
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/cloud-security-specialist/](https://www.msg-systems.ro/en/careers/job-offerings/cloud-security-specialist/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/](https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
@@ -184,22 +184,6 @@ _Generated: 2026-08-18T06:40:25.194Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Backup Administrator
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/backup-admin/](https://www.msg-systems.ro/en/careers/job-offerings/backup-admin/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** sys admin & tech support
-- **Status:** scraped
-
-### Senior Security Engineer
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/](https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
 ### Lead Project Manager
 
 - **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/](https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/)
@@ -208,17 +192,9 @@ _Generated: 2026-08-18T06:40:25.194Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Senior SAP S4HANA Test Manager
+### Senior Security Engineer
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/](https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
-### Product Owner SAP Security & Authorization
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/](https://www.msg-systems.ro/en/careers/job-offerings/po-sap-authorization/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/](https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
