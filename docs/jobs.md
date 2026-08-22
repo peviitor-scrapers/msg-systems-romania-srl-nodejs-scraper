@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-08-21 |
+| Last Scraped | 2026-08-22 |
 
-## Current Job Listings (23)
+## Current Job Listings (22)
 
-_Generated: 2026-08-21T06:43:20.095Z_
+_Generated: 2026-08-22T06:37:17.575Z_
 
 ### Senior Java Developer
 
@@ -88,20 +88,12 @@ _Generated: 2026-08-21T06:43:20.095Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Senior Data Analytics Consultant
+### Head Of Global IT Operations
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-data-warehouse-business-analytics-consultant/](https://www.msg-systems.ro/en/careers/job-offerings/senior-data-warehouse-business-analytics-consultant/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/head-of-global-it-operations/](https://www.msg-systems.ro/en/careers/job-offerings/head-of-global-it-operations/)
 - **Work Mode:** on-site
-- **Location:** România
-- **Tags:** consulting
-- **Status:** scraped
-
-### Senior AI & Machine Learning Engineer
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/ai-machine-learning-engineer/](https://www.msg-systems.ro/en/careers/job-offerings/ai-machine-learning-engineer/)
-- **Work Mode:** on-site
-- **Location:** România
-- **Tags:** software development
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** management
 - **Status:** scraped
 
 ### Senior Cloud Data Engineer
