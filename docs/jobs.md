@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-09-15 |
+| Last Scraped | 2026-09-17 |
 
-## Current Job Listings (22)
+## Current Job Listings (23)
 
-_Generated: 2026-09-15T11:07:55.600Z_
+_Generated: 2026-09-17T11:00:35.055Z_
 
 ### Senior Java Developer
 
@@ -96,6 +96,14 @@ _Generated: 2026-09-15T11:07:55.600Z_
 - **Tags:** management
 - **Status:** scraped
 
+### Senior DevOps & Cloud Engineer
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-devops-cloud-engineer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-devops-cloud-engineer/)
+- **Work Mode:** on-site
+- **Location:** Timișoara, Târgu Mureș
+- **Tags:** software development
+- **Status:** scraped
+
 ### Senior Cloud Data Engineer
 
 - **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-cloud-data-engineer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-cloud-data-engineer/)
@@ -152,12 +160,12 @@ _Generated: 2026-09-15T11:07:55.600Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Senior UC4 Migration Consultant
+### Senior Frontend Developer
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-uc4-migration-consultant/](https://www.msg-systems.ro/en/careers/job-offerings/senior-uc4-migration-consultant/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-frontend-developer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-frontend-developer/)
 - **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
+- **Location:** Timișoara, Târgu Mureș
+- **Tags:** software development
 - **Status:** scraped
 
 ### Senior SAP S4HANA Test Manager
@@ -168,12 +176,12 @@ _Generated: 2026-09-15T11:07:55.600Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Cybersecurity Consultant (ISMS)
+### Senior AWS Architect
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/cybersecurity-isms-consultant/](https://www.msg-systems.ro/en/careers/job-offerings/cybersecurity-isms-consultant/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-aws-architect/](https://www.msg-systems.ro/en/careers/job-offerings/senior-aws-architect/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
+- **Tags:** software development
 - **Status:** scraped
 
 ### Lead Project Manager
