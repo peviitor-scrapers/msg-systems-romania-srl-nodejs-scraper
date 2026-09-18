@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-09-17 |
+| Last Scraped | 2026-09-18 |
 
-## Current Job Listings (23)
+## Current Job Listings (22)
 
-_Generated: 2026-09-17T11:00:35.055Z_
+_Generated: 2026-09-18T10:37:14.456Z_
 
 ### Senior Java Developer
 
@@ -152,9 +152,9 @@ _Generated: 2026-09-17T11:00:35.055Z_
 - **Tags:** software development
 - **Status:** scraped
 
-### Senior UC4 Operations Consultant
+### Senior Security Engineer
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/Senior-UC4-Operation-Consultant/](https://www.msg-systems.ro/en/careers/job-offerings/Senior-UC4-Operation-Consultant/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/](https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
@@ -187,14 +187,6 @@ _Generated: 2026-09-17T11:00:35.055Z_
 ### Lead Project Manager
 
 - **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/](https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
-### Senior Security Engineer
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/](https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
