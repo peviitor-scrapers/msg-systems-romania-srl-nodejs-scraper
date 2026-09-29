@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-09-28 |
+| Last Scraped | 2026-09-29 |
 
 ## Current Job Listings (22)
 
-_Generated: 2026-09-28T12:59:00.119Z_
+_Generated: 2026-09-29T12:10:55.914Z_
 
 ### Senior Java Developer
 
@@ -80,12 +80,12 @@ _Generated: 2026-09-28T12:59:00.119Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Customer Engagement Manager
+### Service Delivery MAnager
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/customer-engagement-manager/](https://www.msg-systems.ro/en/careers/job-offerings/customer-engagement-manager/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/service-delivery-manager/](https://www.msg-systems.ro/en/careers/job-offerings/service-delivery-manager/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
+- **Tags:** management
 - **Status:** scraped
 
 ### Head Of Global IT Operations
