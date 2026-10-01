@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-09-30 |
+| Last Scraped | 2026-10-01 |
 
 ## Current Job Listings (22)
 
-_Generated: 2026-09-30T11:57:43.013Z_
+_Generated: 2026-10-01T12:29:35.213Z_
 
 ### Senior Java Developer
 
@@ -80,7 +80,7 @@ _Generated: 2026-09-30T11:57:43.013Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Service Delivery MAnager
+### Service Delivery Manager
 
 - **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/service-delivery-manager/](https://www.msg-systems.ro/en/careers/job-offerings/service-delivery-manager/)
 - **Work Mode:** on-site
