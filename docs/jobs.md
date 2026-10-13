@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-10-12 |
+| Last Scraped | 2026-10-13 |
 
-## Current Job Listings (22)
+## Current Job Listings (19)
 
-_Generated: 2026-10-12T14:29:46.309Z_
+_Generated: 2026-10-13T13:37:18.114Z_
 
 ### Senior Java Developer
 
@@ -32,12 +32,12 @@ _Generated: 2026-10-12T14:29:46.309Z_
 - **Tags:** software testing
 - **Status:** scraped
 
-### Automation                                        Engineer
+### Lead Project Manager
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/automation-engineer/](https://www.msg-systems.ro/en/careers/job-offerings/automation-engineer/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/](https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/)
 - **Work Mode:** on-site
-- **Location:** Timișoara
-- **Tags:** sys admin & tech support
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
 - **Status:** scraped
 
 ### Product Owner SAP Security & Authorization
@@ -56,17 +56,17 @@ _Generated: 2026-10-12T14:29:46.309Z_
 - **Tags:** sys admin & tech support
 - **Status:** scraped
 
-### Business Consultant- Payments
+### Business Development & Marketing Specialist
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/business-consultant-payments/](https://www.msg-systems.ro/en/careers/job-offerings/business-consultant-payments/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/business-development-marketing-specilist/](https://www.msg-systems.ro/en/careers/job-offerings/business-development-marketing-specilist/)
 - **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
+- **Location:** România
+- **Tags:** marketing & communication
 - **Status:** scraped
 
-### COBOL Developer
+### Senior AWS Architect
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/cobol-developer-automotive/](https://www.msg-systems.ro/en/careers/job-offerings/cobol-developer-automotive/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-aws-architect/](https://www.msg-systems.ro/en/careers/job-offerings/senior-aws-architect/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** software development
@@ -96,12 +96,12 @@ _Generated: 2026-10-12T14:29:46.309Z_
 - **Tags:** management
 - **Status:** scraped
 
-### Senior DevOps & Cloud Engineer
+### Senior SAP S4HANA Test Manager
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-devops-cloud-engineer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-devops-cloud-engineer/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/](https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/)
 - **Work Mode:** on-site
-- **Location:** Timișoara, Târgu Mureș
-- **Tags:** software development
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
 - **Status:** scraped
 
 ### Senior Cloud Data Engineer
@@ -166,28 +166,4 @@ _Generated: 2026-10-12T14:29:46.309Z_
 - **Work Mode:** on-site
 - **Location:** Timișoara, Târgu Mureș
 - **Tags:** software development
-- **Status:** scraped
-
-### Senior SAP S4HANA Test Manager
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/](https://www.msg-systems.ro/en/careers/job-offerings/senior-sap-test-manager/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
-### Senior AWS Architect
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-aws-architect/](https://www.msg-systems.ro/en/careers/job-offerings/senior-aws-architect/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** software development
-- **Status:** scraped
-
-### Lead Project Manager
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/](https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
 - **Status:** scraped
