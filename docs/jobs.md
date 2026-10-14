@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-10-13 |
+| Last Scraped | 2026-10-14 |
 
-## Current Job Listings (19)
+## Current Job Listings (17)
 
-_Generated: 2026-10-13T13:37:18.114Z_
+_Generated: 2026-10-14T11:14:30.141Z_
 
 ### Senior Java Developer
 
@@ -80,20 +80,20 @@ _Generated: 2026-10-13T13:37:18.114Z_
 - **Tags:** consulting
 - **Status:** scraped
 
-### Service Delivery Manager
+### Senior Frontend Developer
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/service-delivery-manager/](https://www.msg-systems.ro/en/careers/job-offerings/service-delivery-manager/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-frontend-developer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-frontend-developer/)
 - **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** management
+- **Location:** Timișoara, Târgu Mureș
+- **Tags:** software development
 - **Status:** scraped
 
-### Head Of Global IT Operations
+### Senior Security Engineer
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/head-of-global-it-operations/](https://www.msg-systems.ro/en/careers/job-offerings/head-of-global-it-operations/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/](https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
-- **Tags:** management
+- **Tags:** consulting
 - **Status:** scraped
 
 ### Senior SAP S4HANA Test Manager
@@ -149,21 +149,5 @@ _Generated: 2026-10-13T13:37:18.114Z_
 - **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/](https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/)
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Cluj-Napoca
-- **Tags:** software development
-- **Status:** scraped
-
-### Senior Security Engineer
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/](https://www.msg-systems.ro/en/careers/job-offerings/senior-security-eng-digital-services/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
-### Senior Frontend Developer
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-frontend-developer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-frontend-developer/)
-- **Work Mode:** on-site
-- **Location:** Timișoara, Târgu Mureș
 - **Tags:** software development
 - **Status:** scraped
