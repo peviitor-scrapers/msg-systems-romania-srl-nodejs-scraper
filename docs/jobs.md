@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-10-15 |
+| Last Scraped | 2026-10-16 |
 
-## Current Job Listings (17)
+## Current Job Listings (16)
 
-_Generated: 2026-10-15T10:53:58.638Z_
+_Generated: 2026-10-16T10:45:23.928Z_
 
 ### Senior Java Developer
 
@@ -32,12 +32,12 @@ _Generated: 2026-10-15T10:53:58.638Z_
 - **Tags:** software testing
 - **Status:** scraped
 
-### Lead Project Manager
+### Senior IT Consultant
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/](https://www.msg-systems.ro/en/careers/job-offerings/lead-project-manager/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/](https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/)
 - **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
+- **Location:** Târgu Mureș, Cluj-Napoca
+- **Tags:** software development
 - **Status:** scraped
 
 ### Product Owner SAP Security & Authorization
@@ -142,12 +142,4 @@ _Generated: 2026-10-15T10:53:58.638Z_
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
-- **Status:** scraped
-
-### Senior IT Consultant
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/](https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Cluj-Napoca
-- **Tags:** software development
 - **Status:** scraped
