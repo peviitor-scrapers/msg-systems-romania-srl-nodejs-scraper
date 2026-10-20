@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-10-19 |
+| Last Scraped | 2026-10-20 |
 
-## Current Job Listings (16)
+## Current Job Listings (17)
 
-_Generated: 2026-10-19T12:12:39.007Z_
+_Generated: 2026-10-20T10:57:22.655Z_
 
 ### Senior Java Developer
 
@@ -142,4 +142,12 @@ _Generated: 2026-10-19T12:12:39.007Z_
 - **Work Mode:** on-site
 - **Location:** Târgu Mureș, Timișoara
 - **Tags:** consulting
+- **Status:** scraped
+
+### SAP ABAP Developer (mid & senior level)
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-abap-developer/](https://www.msg-systems.ro/en/careers/job-offerings/sap-abap-developer/)
+- **Work Mode:** on-site
+- **Location:** Timișoara
+- **Tags:** software development
 - **Status:** scraped
