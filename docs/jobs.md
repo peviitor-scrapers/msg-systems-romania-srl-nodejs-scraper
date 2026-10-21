@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-10-20 |
+| Last Scraped | 2026-10-21 |
 
-## Current Job Listings (17)
+## Current Job Listings (19)
 
-_Generated: 2026-10-20T10:57:22.655Z_
+_Generated: 2026-10-21T11:12:41.935Z_
 
 ### Senior Java Developer
 
@@ -150,4 +150,20 @@ _Generated: 2026-10-20T10:57:22.655Z_
 - **Work Mode:** on-site
 - **Location:** Timișoara
 - **Tags:** software development
+- **Status:** scraped
+
+### Senior Business Consultant
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-business-consultant/](https://www.msg-systems.ro/en/careers/job-offerings/senior-business-consultant/)
+- **Work Mode:** on-site
+- **Location:** Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### IT Operations Support Specialist
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/it-operations-specialist/](https://www.msg-systems.ro/en/careers/job-offerings/it-operations-specialist/)
+- **Work Mode:** on-site
+- **Location:** România
+- **Tags:** tech support
 - **Status:** scraped
