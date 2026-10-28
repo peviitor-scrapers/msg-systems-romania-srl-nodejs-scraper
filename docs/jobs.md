@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-10-27 |
+| Last Scraped | 2026-10-28 |
 
-## Current Job Listings (20)
+## Current Job Listings (21)
 
-_Generated: 2026-10-27T11:38:18.539Z_
+_Generated: 2026-10-28T12:09:32.631Z_
 
 ### Senior Java Developer
 
@@ -171,6 +171,14 @@ _Generated: 2026-10-27T11:38:18.539Z_
 ### SAP Integration Suite Developer
 
 - **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-integration-developer/](https://www.msg-systems.ro/en/careers/job-offerings/sap-integration-developer/)
+- **Work Mode:** on-site
+- **Location:** Timișoara
+- **Tags:** software development
+- **Status:** scraped
+
+### Senior IT Consultant
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-b2b/](https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-b2b/)
 - **Work Mode:** on-site
 - **Location:** Timișoara
 - **Tags:** software development
