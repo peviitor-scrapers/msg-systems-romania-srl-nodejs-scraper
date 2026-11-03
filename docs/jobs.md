@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-11-02 |
+| Last Scraped | 2026-11-03 |
 
-## Current Job Listings (21)
+## Current Job Listings (22)
 
-_Generated: 2026-11-02T14:50:06.438Z_
+_Generated: 2026-11-03T13:40:15.849Z_
 
 ### Senior Java Developer
 
@@ -182,4 +182,12 @@ _Generated: 2026-11-02T14:50:06.438Z_
 - **Work Mode:** on-site
 - **Location:** Timișoara
 - **Tags:** software development
+- **Status:** scraped
+
+### Senior SAP HCM Consultant
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-hcm-consultant/](https://www.msg-systems.ro/en/careers/job-offerings/senior-hcm-consultant/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
 - **Status:** scraped
