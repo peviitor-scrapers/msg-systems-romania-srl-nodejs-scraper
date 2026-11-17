@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-11-16 |
+| Last Scraped | 2026-11-17 |
 
-## Current Job Listings (22)
+## Current Job Listings (18)
 
-_Generated: 2026-11-16T14:51:47.657Z_
+_Generated: 2026-11-17T15:31:14.728Z_
 
 ### Senior Java Developer
 
@@ -72,20 +72,20 @@ _Generated: 2026-11-16T14:51:47.657Z_
 - **Tags:** software development
 - **Status:** scraped
 
-### Business Consultant
+### SAP Integration Suite Developer
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/business-consultant-at-msg-romania/](https://www.msg-systems.ro/en/careers/job-offerings/business-consultant-at-msg-romania/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-integration-developer/](https://www.msg-systems.ro/en/careers/job-offerings/sap-integration-developer/)
 - **Work Mode:** on-site
-- **Location:** România
-- **Tags:** consulting
+- **Location:** Timișoara
+- **Tags:** software development
 - **Status:** scraped
 
-### Senior Frontend Developer
+### IT Operations Support Specialist
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-frontend-developer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-frontend-developer/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/it-operations-specialist/](https://www.msg-systems.ro/en/careers/job-offerings/it-operations-specialist/)
 - **Work Mode:** on-site
-- **Location:** Timișoara, Târgu Mureș
-- **Tags:** software development
+- **Location:** România
+- **Tags:** tech support
 - **Status:** scraped
 
 ### Senior Security Engineer
@@ -147,38 +147,6 @@ _Generated: 2026-11-16T14:51:47.657Z_
 ### SAP ABAP Developer (mid & senior level)
 
 - **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-abap-developer/](https://www.msg-systems.ro/en/careers/job-offerings/sap-abap-developer/)
-- **Work Mode:** on-site
-- **Location:** Timișoara
-- **Tags:** software development
-- **Status:** scraped
-
-### Senior Business Consultant
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-business-consultant/](https://www.msg-systems.ro/en/careers/job-offerings/senior-business-consultant/)
-- **Work Mode:** on-site
-- **Location:** Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
-### IT Operations Support Specialist
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/it-operations-specialist/](https://www.msg-systems.ro/en/careers/job-offerings/it-operations-specialist/)
-- **Work Mode:** on-site
-- **Location:** România
-- **Tags:** tech support
-- **Status:** scraped
-
-### SAP Integration Suite Developer
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-integration-developer/](https://www.msg-systems.ro/en/careers/job-offerings/sap-integration-developer/)
-- **Work Mode:** on-site
-- **Location:** Timișoara
-- **Tags:** software development
-- **Status:** scraped
-
-### Senior IT Consultant
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-b2b/](https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-b2b/)
 - **Work Mode:** on-site
 - **Location:** Timișoara
 - **Tags:** software development
