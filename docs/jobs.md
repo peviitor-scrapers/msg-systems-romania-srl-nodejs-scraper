@@ -10,33 +10,33 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-11-23 |
+| Last Scraped | 2026-11-24 |
 
-## Current Job Listings (18)
+## Current Job Listings (13)
 
-_Generated: 2026-11-23T17:27:33.990Z_
+_Generated: 2026-11-24T16:59:19.246Z_
 
-### Senior Java Developer
+### SAP Solution Expert
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-java-developer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-java-developer/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/](https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/)
 - **Work Mode:** on-site
-- **Location:** Timișoara, Târgu Mureș
-- **Tags:** software development
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
 - **Status:** scraped
 
-### Test Automation Specilalist
+### Technical S4 Architect
 
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/test-automation/](https://www.msg-systems.ro/en/careers/job-offerings/test-automation/)
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/](https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/)
+- **Work Mode:** on-site
+- **Location:** Târgu Mureș, Timișoara
+- **Tags:** consulting
+- **Status:** scraped
+
+### SAP ABAP Developer (mid & senior level)
+
+- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-abap-developer/](https://www.msg-systems.ro/en/careers/job-offerings/sap-abap-developer/)
 - **Work Mode:** on-site
 - **Location:** Timișoara
-- **Tags:** software testing
-- **Status:** scraped
-
-### Senior IT Consultant
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/](https://www.msg-systems.ro/en/careers/job-offerings/senior-it-consultant-/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Cluj-Napoca
 - **Tags:** software development
 - **Status:** scraped
 
@@ -109,46 +109,6 @@ _Generated: 2026-11-23T17:27:33.990Z_
 - **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-cloud-data-engineer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-cloud-data-engineer/)
 - **Work Mode:** on-site
 - **Location:** România
-- **Tags:** software development
-- **Status:** scraped
-
-### .NET Developer
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/senior-dotnet-developer/](https://www.msg-systems.ro/en/careers/job-offerings/senior-dotnet-developer/)
-- **Work Mode:** on-site
-- **Location:** Timișoara, Târgu Mureș
-- **Tags:** software development
-- **Status:** scraped
-
-### Technical S4 Architect
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/](https://www.msg-systems.ro/en/careers/job-offerings/technical-s4-architect/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
-### Atlassian And Collaboration Tools Administrator
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/atlassian-and-collaboration-tools-administrator/](https://www.msg-systems.ro/en/careers/job-offerings/atlassian-and-collaboration-tools-administrator/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** sys admin & tech support
-- **Status:** scraped
-
-### SAP Solution Expert
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/](https://www.msg-systems.ro/en/careers/job-offerings/sap-solution-expert/)
-- **Work Mode:** on-site
-- **Location:** Târgu Mureș, Timișoara
-- **Tags:** consulting
-- **Status:** scraped
-
-### SAP ABAP Developer (mid & senior level)
-
-- **URL:** [https://www.msg-systems.ro/en/careers/job-offerings/sap-abap-developer/](https://www.msg-systems.ro/en/careers/job-offerings/sap-abap-developer/)
-- **Work Mode:** on-site
-- **Location:** Timișoara
 - **Tags:** software development
 - **Status:** scraped
 
