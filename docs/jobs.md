@@ -10,11 +10,11 @@
 | Location | Mun. Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-11-24 |
+| Last Scraped | 2026-11-25 |
 
 ## Current Job Listings (13)
 
-_Generated: 2026-11-24T16:59:19.246Z_
+_Generated: 2026-11-25T16:49:38.642Z_
 
 ### SAP Solution Expert
 
