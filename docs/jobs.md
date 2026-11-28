@@ -7,14 +7,14 @@
 | CIF | 24415960 |
 | Brand | .msg |
 | Status | activ |
-| Location | Mun. Cluj-Napoca |
+| Location | Cluj-Napoca |
 | Website | [https://www.msg-systems.ro](https://www.msg-systems.ro) |
 | Careers | [https://www.msg-systems.ro/en/careers/job-offerings/](https://www.msg-systems.ro/en/careers/job-offerings/) |
-| Last Scraped | 2026-11-27 |
+| Last Scraped | 2026-11-28 |
 
 ## Current Job Listings (13)
 
-_Generated: 2026-11-27T16:11:26.880Z_
+_Generated: 2026-11-28T15:04:58.219Z_
 
 ### SAP Solution Expert
 
